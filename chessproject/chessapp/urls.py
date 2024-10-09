@@ -11,5 +11,7 @@ urlpatterns = [
     path('partidas-en-vivo/', views.partidas_en_vivo, name='partidas_en_vivo'),
     path('tutoriales/', views.tutoriales, name='tutoriales'),
     path('estadisticas/', views.estadisticas_view, name='estadisticas'),
+    path('contacto/', views.contacto, name='contacto'),
+    path('configuracion/', views.configuracion, name='configuracion'),
 ]
 # 

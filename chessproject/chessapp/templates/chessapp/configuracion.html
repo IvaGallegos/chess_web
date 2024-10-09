@@ -63,26 +63,21 @@
     const db = firebaseApp.firestore();
     const auth = firebaseApp.auth();
 
-    function logout() {
-        // Cerrar sesión en Firebase
-        firebase.auth().signOut().then(() => {
-            alert("Sesión cerrada con éxito.");
-            window.location.href = "/"; // Redirige a la página de inicio
-        }).catch((error) => {
-            alert("Error al cerrar sesión: " + error.message);
-        });
-    }
+    
 </script>
 
 <header class="menu-header">
-    <h1>Menú</h1>
+    <h1>configuración</h1>
 </header>
 
 <div class="container menu-content">
-    <a href="{% url 'tablero' %}" class="menu-button btn">Jugar</a>
-    <a href="{% url 'estadisticas' %}" class="menu-button btn">Estadísticas</a> 
-    <a href="{% url 'configuracion' %}" class="menu-button btn">Configuración</a>
-    <button class="menu-button btn logout-button" onclick="logout()">Cerrar Sesión</button>
+    <a  class="menu-button btn">accesibilidad</a>
+    <a  class="menu-button btn">Resaltar movimiento</a>
+    <a  class="menu-button btn">Sonido</a> 
+    <a class="menu-button btn">Idioma</a>
+    <a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
+
+    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>

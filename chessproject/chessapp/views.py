@@ -51,6 +51,12 @@ def tutoriales(request):
 def estadisticas_view(request):
     return render(request, 'chessapp/estadisticas.html')
 
+def contacto(request):
+    return render(request, 'chessapp/contacto.html')
+
+def configuracion(request):
+    return render(request, 'chessapp/configuracion.html')
+
 
 
 

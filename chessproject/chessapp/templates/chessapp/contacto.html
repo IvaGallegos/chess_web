@@ -20,13 +20,12 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'partidas_en_vivo' %}">Partidas en Vivo</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'tutoriales' %}">Tutoriales</a></li>                
-                <li class="nav-item"><a class="nav-link" href="#">Contáctanos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contáctanos</a></li>
             </ul>
             <!-- Botones para acciones -->
             <div class="Botones_1">
                 <a class="btn btn-primary mx-2" href="{% url 'login' %}">Ingresar</a>
                 <a class="btn btn-secondary mx-2" href="{% url 'signin' %}">Registrarse</a>
-                <a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
             </div>
         </div>
     </nav>
@@ -34,27 +33,27 @@
     <header class="bg-primary text-white text-center py-5">
         <h1>¡Bienvenido a Duoc Chess Web!</h1>
         <div id="demo" class="carousel slide" data-ride="carousel">
-            <!-- Indicadores -->
+            <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
             
-            <!-- Diapositivas -->
+            <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{% static 'chessapp/images/imagen_1.jpg' %}" class="d-block w-100" alt="Imagen 1" style="width:100%;">
+                    <img src="{% static 'chessapp/images/imagen_1.png' %}" class="d-block w-100" alt="Imagen 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static 'chessapp/images/imagen_2.jpeg' %}" class="d-block w-100" alt="Imagen 2" style="width:100%;">
+                    <img src="{% static 'chessapp/images/imagen_2.jpeg' %}" class="d-block w-100" alt="Imagen 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static 'chessapp/images/imagen_3.jpg' %}" class="d-block w-100" alt="Imagen 3" style="width:100%;">
+                    <img src="{% static 'chessapp/images/imagen_3.jpg' %}" class="d-block w-100" alt="Imagen 3">
                 </div>
             </div>
             
-            <!-- controles de izquierda y derecha -->
+            <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </a>
@@ -62,33 +61,36 @@
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
-        
     </header>
 
     <div class="container my-5">
-        <h2 class="text-center">¿Cómo Jugar?</h2>
+        <h2 class="text-center">¿Quienes somos?</h2>
         <div class="row">
             <div class="col-md-4 text-center">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Paso 1: Regístrate</h5>
-                        <p class="card-text">Crea una cuenta gratuita para comenzar a jugar y guarda tus partidas.</p>
+                        <h5 class="card-title">Presentación</h5>
+                        <p class="card-text">¡Bienvenidos a nuestra página web de ajedrez inclusiva! Somos un grupo de estudiantes del Instituto 
+                            DuocUC con una pasión por el ajedrez y un firme compromiso con la accesibilidad.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 text-center">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Paso 2: Aprende las Reglas</h5>
-                        <p class="card-text">Revisa nuestras guías y tutoriales para aprender las reglas del juego.</p>
+                        <h5 class="card-title">Misión</h5>
+                        <p class="card-text">Nuestra misión es crear un espacio donde las personas con discapacidades visuales puedan disfrutar y participar en el juego de ajedrez. 
+                            Creemos que el ajedrez es un juego que no solo estimula la mente, sino que también fomenta la camaradería y la inclusión. 
+                            Por ello, hemos diseñado nuestra plataforma teniendo en cuenta las necesidades específicas de los jugadores con discapacidades visuales.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 text-center">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Paso 3: Juega Partidas</h5>
-                        <p class="card-text">Compite en partidas en tiempo real contra jugadores de todo el mundo.</p>
+                        <h5 class="card-title">Visión</h5>
+                        <p class="card-text">A través de nuestra página, ofrecemos recursos educativos, tutoriales y oportunidades para jugar en línea con otros entusiastas del ajedrez. 
+                            Utilizamos tecnología de accesibilidad para asegurarnos de que todos, independientemente de sus habilidades visuales, puedan aprender y disfrutar del ajedrez.</p>
                     </div>
                 </div>
             </div>

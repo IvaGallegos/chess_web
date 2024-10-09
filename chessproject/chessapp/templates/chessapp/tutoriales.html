@@ -47,6 +47,26 @@
 </head>
 <body>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Ajedrez Online</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'partidas_en_vivo' %}">Partidas en Vivo</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'tutoriales' %}">Tutoriales</a></li>                
+                <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contáctanos</a></li>
+            </ul>
+            <!-- Botones para acciones -->
+            <div class="Botones_1">
+                <a class="btn btn-primary mx-2" href="{% url 'login' %}">Ingresar</a>
+                <a class="btn btn-secondary mx-2" href="{% url 'signin' %}">Registrarse</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container my-5">
         <h1>Introducción al Ajedrez</h1>
         <p class="text-center">El ajedrez es un juego de estrategia que se juega entre dos jugadores. Se juega en un tablero cuadrado de 8x8 casillas, y cada jugador controla 16 piezas que se mueven de diferentes maneras. El objetivo del juego es dar jaque mate al rey del oponente.</p>
@@ -76,16 +96,19 @@
         <h2>Video Tutoriales</h2>
         <div class="video-tutorial">
             <div class="video-title">Introducción al Ajedrez</div>
-            <iframe width="100%" height="315" src="https://www.youtube.com/watch?v=e57NqRHE6AY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/e57NqRHE6AY?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
         </div>
         
         <div class="video-tutorial">
             <div class="video-title">Reglas Básicas del Ajedrez</div>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/jT5Frf3Zpcg" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/3VOa8bO1RX4?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
         </div>
         <div class="video-tutorial">
             <div class="video-title">Estrategias Básicas para Principiantes</div>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/AjvGOfODHR0" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/z_KA-xVOiIc?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
         </div>
 
         <h2>Recursos Adicionales</h2>
