@@ -14,6 +14,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <title>2D/3D Javascript Ajedrez</title>
 
+<script>
+	
+	import { initializeApp } from "firebase/app";
+	import { getStorage } from "firebase/storage";
+	
+	// Inicializa Firebase
+	const app = initializeApp(firebaseConfig);
+	
+	// Inicializa Cloud Storage y obtén una referencia al servicio
+	const storage = getStorage(app);
+
+	const storageRef = ref(storage, 'Configuraciones/profile.doc');
+	
+
+
+
+</script>
+
+
+
 <script type="text/javascript">
 var nVwPressed = false;
 function pressVwBtn(nBtnId) {
@@ -22,13 +42,13 @@ function pressVwBtn(nBtnId) {
 	nVwPressed = nBtnId;
 }
 
-// Firefox only
+
 function onPGNLoaded(frEvnt) {
 	var sFBody = frEvnt.target.result;
 	chess.readPGN(sFBody, document.chessCtrl3.plyerClr2[1].checked);
 }
 
-// Firefox only
+
 function loadPGNFile() {
 	var oFile = document.getElementById("PGNFileData").files[0];
 	if (oFile) {
@@ -126,6 +146,7 @@ body {
 	background-image: url("{% static 'chessapp/images/ajedrez_fondo.jpg' %}");
 	background-size: cover;
 	text-aling: center;
+	color:white;
 
 }
 </style>
@@ -156,7 +177,7 @@ body {
     <h3>Opciones de Accesibilidad</h3>
     <button class="btn" onclick="cambiarTamanoFuente('aumentar')">Aumentar Fuente</button>
     <button class="btn" onclick="cambiarTamanoFuente('disminuir')">Disminuir Fuente</button>
-    <button class="btn" onclick="cambiarColorTema()">Cambiar Tema</button>
+    
     <a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
 </div>
 
