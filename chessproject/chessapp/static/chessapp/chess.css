@@ -333,3 +333,10 @@ span.infoKey {
 	border: 1px #000000 solid;
 	color: #ffff00;
 }
+
+.body {
+	background-image: url("{% static 'chessapp/images/ajedrez_fondo.jpg' %}");
+	background-size: cover;
+	color: white;
+	text-align: center;
+}

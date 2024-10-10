@@ -3,11 +3,14 @@
 <head>
 {% load static %}
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <script type="text/javascript" src="{% static 'chessapp/xhr.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+	<script type="text/javascript" src="{% static 'chessapp/xhr.js' %}"></script>
     <script type="text/javascript" src="{% static 'chessapp/chess.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'chessapp/chess.css' %}" />
     <link type="text/css" rel="stylesheet" href="{% static 'chessapp/gnomechess.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+	
+	<link rel="stylesheet" href="{% static 'chessapp/styles.css' %}"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <title>2D/3D Javascript Ajedrez</title>
 
@@ -118,22 +121,14 @@ img.tbBtn {
 	-webkit-box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
 	box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
 }
+
+body {
+	background-image: url("{% static 'chessapp/images/ajedrez_fondo.jpg' %}");
+	background-size: cover;
+	text-aling: center;
+
+}
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script type="text/javascript">
     var nVwPressed = false;
@@ -157,14 +152,16 @@ img.tbBtn {
 
 <body onload="initChess();">
 <h1>Tablero Ajedrez</h1>
+<div class="accesibilidad">
+    <h3>Opciones de Accesibilidad</h3>
+    <button class="btn" onclick="cambiarTamanoFuente('aumentar')">Aumentar Fuente</button>
+    <button class="btn" onclick="cambiarTamanoFuente('disminuir')">Disminuir Fuente</button>
+    <button class="btn" onclick="cambiarColorTema()">Cambiar Tema</button>
+    <a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
+</div>
+
 <p>Configuraciones especiales para tablero con mayor nitidez</p>
 <form name="chessCtrl1" onsubmit="return(false);">
-
-
-
-
-
-
 
 
 <p style="text-align:center;">[&nbsp;<input id="useAIAsk" name="useAI" type="checkbox" onclick="chess.useAI(this.checked);" checked /> <label for="useAIAsk">Jugar contra la máquina</label> | Promocionar a: <select onchange="chess.setPromotion(this.selectedIndex);" name="selPromo"><option>Dama</option><option>Torre</option><option>Alfil</option><option>Caballo</option></select> | <input type="button" name="strtBtn" value="Nueva Partida" onclick="chess.organize(this.form.plyerClr1[1].checked);" /> (Humano: <input type="radio" name="plyerClr1" id="white1" checked /> <label for="white1">Blancas</label> <input type="radio" name="plyerClr1" id="black1" /> <label for="black1">Negras</label>) | Nivel de juego de la maquina (presiona denuevo para guardar configuracion): <input type="text" name="plyDepthCtrl" value="0" size="2" onkeypress=";if(event.keyCode===13&&chess.setPlyDepth(this.value)){alert('Ply depth setted.' + (Number(this.value) > 2 ? '\nAttention! The game could be very slow.' : ' Good game :)'));}" />&nbsp;]</p>

@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="{% static 'chessapp/funciones.js' %}"></script>
+
     <title>Registro</title>
     <style>
         body {
@@ -57,39 +59,42 @@
     const db = firebaseApp.firestore();
     const auth = firebaseApp.auth();
 
-    function register() {
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
 
-        if (name === "") {
-            alert("Por favor, ingrese su nombre");
-            return;
-        }
-    
-        var emailPattern = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,3}$/;
-        if (!emailPattern.test(email)) {
-            alert("Por favor, ingrese un correo electrónico válido");
-            return;
-        }
-    
-        var passwordPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/;
-        if (!passwordPattern.test(password)) {
-            alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número");
-            return;
-        }
-  
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            var user = userCredential.user;
-            alert("Usuario registrado con éxito: " + user.email);
-            window.location.href = "{% url 'menu' %}";
-        })
-        .catch((error) => {
-            var errorMessage = error.message;
-            alert("Error: " + errorMessage);
-        });
+    //Funcion para registro en firebase
+function register() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    if (name === "") {
+        alert("Por favor, ingrese su nombre");
+        return;
     }
+
+    var emailPattern = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+        alert("Por favor, ingrese un correo electrónico válido");
+        return;
+    }
+
+    var passwordPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/;
+    if (!passwordPattern.test(password)) {
+        alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número");
+        return;
+    }
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        var user = userCredential.user;
+        alert("Usuario registrado con éxito: " + user.email);
+        window.location.href = "/menu/";
+    })
+    .catch((error) => {
+        var errorMessage = error.message;
+        alert("Error: " + errorMessage);
+    });
+}
+
 </script>
 
 <header>
