@@ -6,22 +6,22 @@ var chess = (function() {
 	// 2d
 	oBoardTable = null, aCoords, aFlatSquares, sLstSqColr,
 
-	// both visualizations
+	// ambas visualizaciones
 	oBoardsBox, bHumanSide = true,
 
-	// resizing vars
-	nDeskWidth = 512, nDeskHeight = 512, nFlatBVMargin = 12, // theese values are modificable
+	// variables de redimensionamiento
+	nDeskWidth = 512, nDeskHeight = 512, nFlatBVMargin = 12, // estos valores son modificables
 	nFlatBoardSide = nDeskHeight - nFlatBVMargin, nPageX, nPageY, iBoardsBoxX, iBoardsBoxY, nDscrsX, nDscrsY, oFilm, nMinWidth = nMinHeight = 512,
 
-	// history motion picture
+	// movimiento de la historia
 	nMotionId, bMotion = false, bBoundLock = false, nFrameRate = 1000,
 
 	// DOM
 	oPGNBtn, oMovesSelect, oInfoBox, oCtrlForm, oNtfArea = null, oNtfClsAll = null, bInfoBox = false, aCloseCalls = [], iNtfs = 0, rDeniedTagChrs = /(^\d)|\W/g, sAlgBoxEmpty = "digit your move...", bCtrlIsDown = false,
 
-	// system
+	// sistema
 	sMovesList, sPGNHeader, flagHumanBlack, bReady = true, bAI = true, bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, iHistPointr = -1, aHistory = [], kings = [0, 0], iRound = 1,
-	oGameInfo = {}, oNewInfo = {}, etc = { // do not change theese values!!
+	oGameInfo = {}, oNewInfo = {}, etc = { // no cambies estos valores!!
 		aBoard: [],
 		aThreats: [],
 		nPromotion: 0,
@@ -51,7 +51,7 @@ var chess = (function() {
 						}
 					} else if ((nDiffX + 1 | 2) === 2) {
 						if (nDiffY !== nWay) { return(false); }
-						if ((nTarget < 1 || flagTgColor === flagPcColor) && (/* not en passant: */ nPosY !== 7 + nWay >> 1 || /* if our pawn is not on the opening, or if it is but... */ nPawnStride % 10 - 1 !== nTargetX /* ...not near him another pawn has moved for first time. */)) { return(false); }
+						if ((nTarget < 1 || flagTgColor === flagPcColor) && (/* not en passant: */ nPosY !== 7 + nWay >> 1 || /* si nuestro peón no está en la apertura, o si lo está pero... */ nPawnStride % 10 - 1 !== nTargetX /* ...no cerca de él, otro peón se ha movido por primera vez. */)) { return(false); }
 					} else { return(false); }
 					break;
 				case 3: // knight
@@ -71,7 +71,7 @@ var chess = (function() {
 					var ourRook;
 					if ((nDiffY === 0 || (nDiffY + 1 | 2) === 2) && (nDiffX === 0 || (nDiffX + 1 | 2) === 2)) {
 						if (nTarget > 0 && flagTgColor === flagPcColor) { return(false); }
-					} else if (ourRook = this.lookAt(30 - nDiffX >> 2 & 7, nTargetY), (nDiffX + 2 | 4) === 4 && nDiffY === 0 && !bCheck && !bHasMoved && ourRook > 0 && Boolean(ourRook & 16)) { // castling
+					} else if (ourRook = this.lookAt(30 - nDiffX >> 2 & 7, nTargetY), (nDiffX + 2 | 4) === 4 && nDiffY === 0 && !bCheck && !bHasMoved && ourRook > 0 && Boolean(ourRook & 16)) { // enroque
 						for (var passX = nDiffX * 3 + 14 >> 2; passX < nDiffX * 3 + 22 >> 2; passX++) { if (this.lookAt(passX, nTargetY) > 0 || isThreatened(passX, nTargetY, nTargetY / 7 << 3 ^ 1)) { return(false); } }
 						if (nDiffX + 2 === 0 && this.aBoard[nTargetY * 10 + 22] > 0) { return(false); }
 					} else { return(false); }
@@ -125,7 +125,7 @@ var chess = (function() {
 				}
 				if (nTarget > 0 && flagTgColor === flagPcColor) { return(false); }
 			}
-			/* Although it might seem impossible that the target is the opponent's king, this condition is needed for certain hypothesis. */
+			/* Aunque pueda parecer imposible que el objetivo sea el rey del oponente, esta condición es necesaria para ciertas hipótesis. */
 			if (nTarget + 6 & 7) {
 				var bKingInCheck = false, oKing = nPieceType === 2 ? endSq : kings[flagPcColor >> 3];
 				this.aBoard[startSq] = 0;
@@ -261,7 +261,7 @@ var chess = (function() {
 		var nMoves = aHistory.length >> 1, sPromoAlg = new String(), nEndPosX = nEndPt % 10 - 1, nEndPosY = (nEndPt - nEndPt % 10) / 10 - 2, nStartPosX = nStartPt % 10 - 1, nStartPosY = (nStartPt - nStartPt % 10) / 10 - 2, iVerifyX, iVerifyY, disambiguateX = false, disambiguateY = false, signedNumber = nStartPt | nEndPt << 7 | nPieceId << 14 | nTarget << 19, vPromo = false, bWriteCapture = ((nPieceId & 7) === 1 && (nStartPt + nEndPt & 1) && nTarget === 0 /* en passant */) || nTarget > 0, colorFlag = nPieceId & 8;
 		lastStart = nStartPt;
 		lastEnd = nEndPt;
-		if ((nEndPosY + 1 | 9) === 9 /* true in case of nEndPosY === -1! */ && (nPieceId & 7) === 1) {
+		if ((nEndPosY + 1 | 9) === 9 /* verdadero en caso de que nEndPosY === -1! */ && (nPieceId & 7) === 1) {
 			vPromo = nPromo || (22 - etc.nPromotion ^ colorFlag);
 			signedNumber |= vPromo << 24;
 			sPromoAlg = "=" + "NBRQ".charAt(vPromo - 3 & 7);
@@ -296,7 +296,7 @@ var chess = (function() {
 		iHistPointr++;
 	}
 
-	// Toledo Chess Engine (see http://nanochess.110mb.com/)
+	// 	Motor de Ajedrez Toledo (mira http://nanochess.110mb.com/)
 	var fourBtsLastPc, flagWhoMoved, nPawnStride, nFrstFocus, nScndFocus, nPlyDepth = 2, iSquare = 120, thnkU = [53,47,61,51,47,47], aParams = [5,3,4,6,2,4,3,5,1,1,1,1,1,1,1,1,9,9,9,9,9,9,9,9,13,11,12,14,10,12,11,13,0,99,0,306,297,495,846,-1,0,1,2,2,1,0,-1,-1,1,-10,10,-11,-9,9,11,10,20,-9,-11,-10,-20,-21,-19,-12,-8,8,12,19,21];
 	function consider(thnkA, thnkB, thnkH, thnkF, thnkPawnStride, thnkDepth) {
 		var iThnkPiece, thnkSigndPiece, thnkPiece, thnkL, thnkE, thnkD, thnkStartPt = thnkF, thnkN = -1e8, thnkK = 78 - thnkH << 10, thnkEndPt, thnkG, thnkM, thnkY, thnkQ, thnkTarget, thnkC, thnkJ, thnkZ = flagWhoMoved ? -10 : 10;
@@ -362,7 +362,7 @@ var chess = (function() {
 		iSquare--;
 		return(thnkN + 1e8 && thnkN >- thnkK + 1924 | thnkD ? thnkN : 0);
 	}
-	// End Toledo Chess Engine
+	// 	Fin del Motor de Ajedrez Toledo
 
 	function engineMove() {
 		consider(0,0,0,21,nPawnStride,nPlyDepth);
@@ -371,7 +371,7 @@ var chess = (function() {
 		bReady = true;
 	}
 
-	// Flat chessboard functions
+	// 	Funciones de tablero de ajedrez plano
 	function writeFlatPieces() {
 		var sSqrContent, oSquareCell, nSquareId, nMenacedSq, nConst;
 		for (var iCell = 0; iCell < 64; iCell++) {
@@ -412,14 +412,14 @@ var chess = (function() {
 
 	function showFlatBoard() {
 		if (oBoardTable) {
-		// flat chessboard will be updated
+		// 	el tablero de ajedrez plano será actualizado
 			updateFlatCoords();
 			if (!etc.bFlatView) {
 				etc.oFlatVwArea.appendChild(oBoardTable);
 				etc.bFlatView = true;
 			}
 		} else {
-		// flat chessboard will be created
+		// 	se creará un tablero de ajedrez plano
 			aCoords = [], aFlatSquares = [], oBoardTable = document.createElement("table");
 			var iGridRow, iFlatSquare, iHorHeadr, iVerHeadr, newSquareId, newSquareCell, gridBody = document.createElement("tbody"), gridAngle = document.createElement("td");
 
@@ -474,7 +474,7 @@ var chess = (function() {
 		writeFlatPieces();
 	}
 
-	// Solid chessboard functions
+	// 	Funciones sólidas del tablero de ajedrez
 	function runComponents() {
 		graphicsStatus++;
 		if (graphicsStatus === 15) {
@@ -563,7 +563,7 @@ var chess = (function() {
 							nAlgStartSq = nAlgStartY * 10 + nAlgStartX + 21;
 							nAlgPiece = etc.aBoard[nAlgStartSq];
 						}
-						else { return(false); } // piece not found!!!
+						else { return(false); } // pieza no encontrada!!!
 					} else {
 						for (var iFoundY = 0; iFoundY < 8; iFoundY++) {
 							iFoundPc = etc.lookAt(nAlgStartX, iFoundY);
@@ -607,7 +607,7 @@ var chess = (function() {
 				else { nAlgPromo = nAlgPiece; }
 				nAlgTarget = etc.aBoard[nAlgEndSq];
 			}
-			if (nAlgStartSq === 0) { return(false); } // piece not found!!!
+			if (nAlgStartSq === 0) { return(false); } // pieza no encontrada!!!
 			var hisKing = kings[nColorFlag >> 3 ^ 1];
 			if ((nAlgPiece & 7) === 1 && (nAlgStartSq + nAlgEndSq & 1) && nAlgTarget === 0) { etc.aBoard[nAlgStartSq - nAlgStartSq % 10 + nAlgEndSq % 10] = 0; } // en passant
 			etc.aBoard[nAlgStartSq] = 0;
@@ -637,7 +637,7 @@ var chess = (function() {
 			iHistTarg = iSigned >> 19 & 31;
 			iHistPromo = iHistPiece > 1023 ? (bitBackward ? 9 - (iHistPts[1] - iHistPts[1] % 10 & 8) : iSigned >> 24) : false;
 			if ((iHistPiece & 7) === 2) {
-				if ((iHistPts[1] - iHistPts[0] + 2 | 4) === 4) { // castling
+				if ((iHistPts[1] - iHistPts[0] + 2 | 4) === 4) { // enroque
 					nExprs1 = iHistPts[1] - iHistPts[1] % 10 + (iHistPts[1] - iHistPts[0] > 0 ? 8 : 1);
 					nExprs2 = iHistPts[1] - iHistPts[1] % 10 + (iHistPts[1] - iHistPts[0] > 0 ? 6 : 4);
 					etc.aBoard[bitBackward ? nExprs1 : nExprs2] = 5 + (iHistPts[1] - iHistPts[1] % 10 & 8) + (bitBackward << 4);
@@ -691,7 +691,7 @@ var chess = (function() {
 		return(true);
 	}
 
-// DOM private APIs
+// APIs privadas del DOM
 	function closeMsg(oMsgNode, nEventId) {
 		var iFrameA1 = 1;
 		for (var iFrameA2 = 1; iFrameA2 < 5; iFrameA2++) { window.setTimeout(function() { oMsgNode.style.opacity = "0." + String(85 - (17 * iFrameA1)); iFrameA1++; }, iFrameA2 * 50); }
@@ -921,7 +921,7 @@ var chess = (function() {
 
 	function getCtrlUp(oKeyEvnt3) { if (oKeyEvnt3.ctrlKey) { bCtrlIsDown = false; } }
 
-// Public APIs
+// APIs Publicas
 	return {
 		help: function() {
 			if (!bReady) { return; }
@@ -1096,8 +1096,8 @@ var chess = (function() {
 			if (bMotion || iHistPointr === nHistLen3 - 1) { return; }
 			readHistory(nHistLen3 - iHistPointr - 1, true);
 		},
-		// it's for developpers only: do not uncomment this function, please!
-		// runInside: function(sJSCode) { eval(sJSCode); },
+		// es solo para desarrolladores: ¡no descomente esta función, por favor!
+				// runInside: function(sJSCode) { eval(sJSCode); },
 		readPGN: function(sPGNBody, bHumanBlack) {
 			var iInfoField, iAlgMoves, cleanPGN = sPGNBody.replace(/\{.*\}/g, "").replace(/\s*;[^\n]\s*|\s+/g, " "), sFieldFence = "\\[[^\\]]*\\]", aFlatHeadr = cleanPGN.match(new RegExp(sFieldFence, "g")), aMovesLoaded = cleanPGN.replace(new RegExp("^\\s*(" + sFieldFence + "\\s*)*(\\d+\\.\\s*)?|\\+|\\s*((#|(\\d+(\/\\d+)?\\-\\d+(\/\\d+)?)|\\*).*)?$", "g"), "").split(/\s+\d+\.\s*/);
 			resetBoard();
@@ -1133,7 +1133,7 @@ var chess = (function() {
 			oBoardsBox.style.height = nDeskHeight + "px";
 		},
 		getDimensions: function() { return[nDeskWidth, nDeskHeight]; },
-		setSide: function(nSide) { // 0: white side, 1: black side, 2: human side.
+		setSide: function(nSide) { 		// 0: lado blanco, 1: lado negro, 2: lado humano.
 			var bWasBlack = etc.bBlackSide;
 			bHumanSide = Boolean(nSide >> 1);
 			if (bHumanSide) { etc.bBlackSide = Boolean(flagHumanBlack) }

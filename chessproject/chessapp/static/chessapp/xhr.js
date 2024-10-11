@@ -1,5 +1,5 @@
 
-// retrieves a file via XMLHTTPRequest, calls fncCallback when done or fncError on error.
+// recupera un archivo mediante XMLHTTPRequest, llama a fncCallback cuando se completa o a fncError en caso de error.
 
 function XHR(strURL, fncCallback /*, argumentToPass1, argumentToPass2, etc. */) {
 	var oHTTP, argsArr = Array.prototype.slice.call(arguments, 2);

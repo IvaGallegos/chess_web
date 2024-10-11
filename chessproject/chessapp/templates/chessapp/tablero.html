@@ -213,22 +213,22 @@ body {
 </script>
 
 <form name="chessCtrl2" onsubmit="return(false);">
-<p style="text-align:center;">[&nbsp;View side: <select onchange="chess.setSide(this.selectedIndex);" name="selSide"><option>White</option><option>Black</option><option selected>Human side</option></select> | <input id="useKeybAsk" name="KeybCtrl" type="checkbox" onclick="chess.useKeyboard(this.checked);" checked /> <label for="useKeybAsk">Enable keyboard</label> | Motion frame rate: <input type="text" name="frameRateCtrl" value="1000" size="5" onchange="var nMs=new Number(this.value);if(!isNaN(nMs)&&nMs>0){chess.setFrameRate(nMs);}" /> ms&nbsp;]</p>
+<p style="text-align:center;">[&nbsp;Ver lado: <select onchange="chess.setSide(this.selectedIndex);" name="selSide"><option>Blanco</option><option>Negro</option><option selected>Lado humano</option></select> | <input id="useKeybAsk" name="KeybCtrl" type="checkbox" onclick="chess.useKeyboard(this.checked);" checked /> <label for="useKeybAsk">Habilitar teclado</label> | Tasa de fotogramas en movimiento: <input type="text" name="frameRateCtrl" value="1000" size="5" onchange="var nMs=new Number(this.value);if(!isNaN(nMs)&&nMs>0){chess.setFrameRate(nMs);}" /> ms&nbsp;]</p>
 </form>
 <hr />
-<h3 style="text-align:center;">Portable Game Notation reader</h3>
+<h3 style="text-align:center;">Plector de Notación de Juego portable</h3>
 <form name="chessCtrl3" onsubmit="return(false);">
 <table id="pgnTable">
 <tbody>
-<tr><td colspan="2" style="text-align:center;">Human is: <input type="radio" name="plyerClr2" id="white2" checked /> <label for="white2">white</label> <input type="radio" name="plyerClr2" id="black2" /> <label for="black2">black</label></td>
+<tr><td colspan="2" style="text-align:center;">Humano juega en lado: <input type="radio" name="plyerClr2" id="white2" checked /> <label for="white2">Blanco</label> <input type="radio" name="plyerClr2" id="black2" /> <label for="black2">Negro</label></td>
 <tr>
-<td>Select a PGN file (Firefox only):</td>
-<td><input type="file" id="PGNFileData" /> <a href="#" onclick="loadPGNFile(); return(false);">Load</a></td>
+<td>Selecciona un archivo PGN (solo Firefox):</td>
+<td><input type="file" id="PGNFileData" /> <a href="#" onclick="loadPGNFile(); return(false);">Cargar</a></td>
 </tr>
 <tr>
-<td>or paste your PGN file's body here:</td>
-<td><textarea rows="10" cols="50" id="PGNBodyArea"></textarea> <a href="#" onclick="chess.readPGN(document.getElementById('PGNBodyArea').value,document.chessCtrl3.plyerClr2[1].checked);return(false);">Load</a><br />
-(you can try with <a href="sample.pgn">this</a> example PGN file)</td>
+<td>o pega el contenido de tu archivo PGN aquí:</td>
+<td><textarea rows="10" cols="50" id="PGNBodyArea"></textarea> <a href="#" onclick="chess.readPGN(document.getElementById('PGNBodyArea').value,document.chessCtrl3.plyerClr2[1].checked);return(false);">Cargar</a><br />
+(puedes intentar con <a href="sample.pgn">este</a> archivo PGN de ejemplo)</td>
 </tr>
 </tbody>
 </table>

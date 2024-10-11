@@ -1,7 +1,7 @@
-#flatChessboard { /* Table element */
+#flatChessboard { /* Elemento de tabla */
 	/**
-	* margin-top: [DYNAMIC VALUE];
-	* margin-bottom: [DYNAMIC VALUE];
+	* margin-top: [VALOR DINÁMICO];
+	* margin-bottom: [VALOR DINÁMICO];
 	*/
 	margin-left: auto;
 	margin-right: auto;

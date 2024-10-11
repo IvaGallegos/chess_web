@@ -86,7 +86,7 @@ div.gnotify {
 	z-index: 10000001;
 }
 
-/** Normal Style Positions **/
+/** Posiciones de Estilo Normal **/
 div.gnotify { position: fixed; }
 
 div.gnotify.top-left {
@@ -121,7 +121,7 @@ div.gnotify-message span.intLink, div.gnotify-message a, div.gnotify-message a:l
 	color: inherit;
 }
 
-/** Cross Browser Styling **/
+/** Estilo Multinavegador **/
 div.center div.gnotify-notification, div.center div.gnotify-closer {
 	margin-left: auto;
 	margin-right: auto;
