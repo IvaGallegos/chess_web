@@ -3,6 +3,8 @@
 <head>
 {% load static %}
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  	<script type="module" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+
 
     <script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
 	<script type="text/javascript" src="{% static 'chessapp/xhr.js' %}"></script>
@@ -13,6 +15,10 @@
 	<link rel="stylesheet" href="{% static 'chessapp/styles.css' %}"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <title>2D/3D Javascript Ajedrez</title>
+
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js"></script>
 
 <script>
 	
@@ -26,8 +32,51 @@
 	const storage = getStorage(app);
 
 	const storageRef = ref(storage, 'Configuraciones/profile.doc');
+
+	const db = firebaseApp.firestore();
+	const auth = firebaseApp.auth();
+	
+	const app = initializeApp(firebaseConfig);
 	
 
+	const firebaseApp = firebase.initializeApp({
+		apiKey: "AIzaSyB2_bx_Cik5pDrL5GhS5mSUMve13BLtqV0",
+		authDomain: "chess-8911b.firebaseapp.com",
+		projectId: "chess-8911b",
+		storageBucket: "chess-8911b.appspot.com",
+		messagingSenderId: "928989868620",
+		appId: "1:928989868620:web:07ff1cc1c2ff08e382fae9",
+		measurementId: "G-3LHBN4WTVE"});
+
+
+	
+	firebase.auth().onAuthStateChanged((user) => {
+		if (user) {
+			const userId = user.uid; // El ID del usuario actual
+			
+			// Guardar el tamaño de fuente en Firestore
+			db.collection("configuraciones").doc(userId).set({
+				tamanoFuente: cuerpo.style.fontSize
+			}, { merge: true })
+			.then(() => {
+				console.log("Configuración de tamaño de fuente guardada correctamente.");
+			})
+			.catch((error) => {
+				console.error("Error al guardar la configuración: ", error);
+			});
+		} else {
+			console.error("No hay un usuario autenticado.");
+		}
+	});
+
+	
+	
+	const db = firebaseApp.firestore();
+	const auth = firebaseApp.auth();
+	
+	const app = initializeApp(firebaseConfig);
+	const storage = getStorage(app);
+	const storageRef = ref(storage, 'configuraciones/configuraciones.doc');
 
 
 </script>

@@ -18,7 +18,7 @@ const auth = firebaseApp.auth();
 
 
 //Funcion para cerrar funcion en firebase
-function logout() {
+export function logout() {
     // Cerrar sesión en Firebase
     firebase.auth().signOut().then(() => {
         alert("Sesión cerrada con éxito.");
