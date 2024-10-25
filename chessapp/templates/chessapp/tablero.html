@@ -3,39 +3,19 @@
 <head>
 {% load static %}
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-	<!--<script type="text/javascript" src="{% static 'chessapp/fuente.js' %}"></script>-->
+	<script type="text/javascript" src="{% static 'chessapp/fuente.js' %}"></script>
 
-    <script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+    <!--<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>-->
 	<script type="text/javascript" src="{% static 'chessapp/xhr.js' %}"></script>
     <script type="text/javascript" src="{% static 'chessapp/chess.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'chessapp/chess.css' %}" />
     <link type="text/css" rel="stylesheet" href="{% static 'chessapp/gnomechess.css' %}" />
 	
+	<link type="text/css" rel="stylesheet" href="{% static 'chessapp/tablero.css' %}" />
+
 	<link rel="stylesheet" href="{% static 'chessapp/styles.css' %}"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <title>2D/3D Javascript Ajedrez</title>
-
-<script>
-	import { guardarTamanoFuenteEnDatabase } from "./accesibilidad";
-
-// Función para cambiar el tamaño de fuente
-function cambiarTamanoFuente(accion) {
-    const cuerpo = document.body;
-    let tamanoActual = parseFloat(window.getComputedStyle(cuerpo).fontSize);
-
-    if (accion === 'aumentar') {
-        cuerpo.style.fontSize = (tamanoActual + 2) + 'px';
-    } else if (accion === 'disminuir') {
-        cuerpo.style.fontSize = (tamanoActual - 2) + 'px';
-    }
-
-    // Guarda el nuevo tamaño de fuente en la base de datos
-    guardarTamanoFuenteEnDatabase(cuerpo.style.fontSize);
-}
-
-
-
-</script>
 
 
 
@@ -177,34 +157,78 @@ body {
 </head>
 
 <body onload="initChess();">
-<h1>Tablero Ajedrez</h1>
-<div class="accesibilidad">
+	<header>
+        <h1 class="page-title">Tablero de Ajedrez</h1>
+        <p class="page-subtitle">¡Desafía a la máquina!</p>
+    </header>
+<div class="btn" id="toggleAccesibilidadBtn"  style="text-align: center; margin: 20px;"> 
+	<button id="toggleAccesibilidadBtn" class="btn" onclick="toggleAccesibilidad()">Opciones de Accesibilidad</button>
+
+</div>	
+	
+	
+<div class="accesibilidad" id="accesibilidadOptions" >
     <h3>Opciones de Accesibilidad</h3>
-    <button class="btn" onclick="cambiarTamanoFuente('aumentar')">Aumentar Fuente</button>
-    <button class="btn" onclick="cambiarTamanoFuente('disminuir')">Disminuir Fuente</button>
-    
-    <a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
-</div>
-<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}" async></script>
-<p>Configuraciones especiales para tablero con mayor nitidez</p>
-<form name="chessCtrl1" onsubmit="return(false);">
+    <button class="btn" onclick="cambiarTamanoZoom('aumentar')">Aumentar Zoom</button>
+    <button class="btn" onclick="cambiarTamanoZoom('disminuir')">Disminuir Zoom</button>
+	<button class="btn" onclick="toggleAccesibilidad()">Ocultar Opciones de Accesibilidad</button></div>
 
 
-<p style="text-align:center;">[&nbsp;<input id="useAIAsk" name="useAI" type="checkbox" onclick="chess.useAI(this.checked);" checked /> <label for="useAIAsk">Jugar contra la máquina</label> | Promocionar a: <select onchange="chess.setPromotion(this.selectedIndex);" name="selPromo"><option>Dama</option><option>Torre</option><option>Alfil</option><option>Caballo</option></select> | <input type="button" name="strtBtn" value="Nueva Partida" onclick="chess.organize(this.form.plyerClr1[1].checked);" /> (Humano: <input type="radio" name="plyerClr1" id="white1" checked /> <label for="white1">Blancas</label> <input type="radio" name="plyerClr1" id="black1" /> <label for="black1">Negras</label>) | Nivel de juego de la maquina (presiona denuevo para guardar configuracion): <input type="text" name="plyDepthCtrl" value="0" size="2" onkeypress=";if(event.keyCode===13&&chess.setPlyDepth(this.value)){alert('Ply depth setted.' + (Number(this.value) > 2 ? '\nAttention! The game could be very slow.' : ' Good game :)'));}" />&nbsp;]</p>
+<form name="chessCtrl1" class="chess-form" onsubmit="return(false);">
+	<p>Configuraciones de partida</p>
+    <div class="form-group">
+        <input id="useAIAsk" name="useAI" type="checkbox" onclick="chess.useAI(this.checked);" checked />
+        <label for="useAIAsk">Jugar contra la máquina</label>
+    </div>
 
-<div id="chessToolBar"><div id="setViewBtns"><span id="viewBtn2" onclick="chess.setView(2);pressVwBtn(2);" onmousedown="return(false);">3D view</span><span id="viewBtn1" onclick="chess.setView(1);pressVwBtn(1);" onmousedown="return(false);">2D view</span><span id="viewBtn3" onclick="chess.setView(3);pressVwBtn(3);" onmousedown="return(false);">Both</span></div>
-<img class="tbBtn" src="{% static 'chessapp/icons/skip-backward.png' %}" title="" onclick="chess.backToStart();" />
-<img class="tbBtn" src="{% static 'chessapp/icons/backward.png' %}" title="" onclick="chess.navigate(-10, true);" />
-<img class="tbBtn" src="{% static 'chessapp/icons/reverse-play.png' %}" title="" onclick="chess.navigate(-1, true);" />
-<img class="tbBtn" src="{% static 'chessapp/icons/stop.png' %}" title="" onclick="chess.stopMotion();" />
-<img class="tbBtn" src="{% static 'chessapp/icons/play.png' %}" title="" onclick="chess.navigate(1, true);" />
-<img class="tbBtn" src="{% static 'chessapp/icons/forward.png' %}" title="" onclick="chess.navigate(10, true);" />
-<img class="tbBtn" src="{% static 'chessapp/icons/skip-forward.png' %}" title="" onclick="chess.returnToEnd();" />
-<img class="tbBtn" src="{% static 'chessapp/icons/go-previous.png' %}" title="" onclick="chess.navigate(-1);" />
-<img class="tbBtn" src="{% static 'chessapp/icons/go-next.png' %}" title="" onclick="chess.navigate(1);" />
-<img class="tbBtn" src="{% static 'chessapp/icons/help-hint.png' %}" title="" onclick="chess.help();" />
-</div>
+    <div class="form-group">
+        <label for="selPromo">Promocionar a:</label>
+        <select id="selPromo" name="selPromo" onchange="chess.setPromotion(this.selectedIndex);">
+            <option>Dama</option>
+            <option>Torre</option>
+            <option>Alfil</option>
+            <option>Caballo</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="button" name="strtBtn" class="btn-new-game" value="Nueva Partida" onclick="chess.organize(this.form.plyerClr1[1].checked);" />
+		<a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
+    </div>
+
+    <div class="form-group">
+        <label for="white1">Humano:</label>
+        <input type="radio" name="plyerClr1" id="white1" checked />
+        <label for="white1">Blancas</label>
+        <input type="radio" name="plyerClr1" id="black1" />
+        <label for="black1">Negras</label>
+    </div>
+
+    <div class="form-group">
+        <label for="plyDepthCtrl">Nivel de juego de la máquina:</label>
+        <input type="text" name="plyDepthCtrl" id="plyDepthCtrl" value="0" size="2" onkeypress="if(event.keyCode===13&&chess.setPlyDepth(this.value)){alert('Ply depth setted.' + (Number(this.value) > 2 ? '\nAttention! The game could be very slow.' : ' Good game :)'));}" />
+    </div>
+
+    <div class="view-buttons">
+        <span class="btn-toolbar" onclick="chess.setView(2);pressVwBtn(2);">3D view</span>
+        <span class="btn-toolbar" onclick="chess.setView(1);pressVwBtn(1);">2D view</span>
+        <span class="btn-toolbar" onclick="chess.setView(3);pressVwBtn(3);">Both</span>
+    </div>
+
+    <div class="toolbar toolbar-icons">
+        <img src="{% static 'chessapp/icons/skip-backward.png' %}" title="Retroceder al inicio" onclick="chess.backToStart();" />
+        <img src="{% static 'chessapp/icons/backward.png' %}" title="Retroceder 10 movimientos" onclick="chess.navigate(-10, true);" />
+        <img src="{% static 'chessapp/icons/reverse-play.png' %}" title="Retroceder 1 movimiento" onclick="chess.navigate(-1, true);" />
+        <img src="{% static 'chessapp/icons/stop.png' %}" title="Detener movimiento" onclick="chess.stopMotion();" />
+        <img src="{% static 'chessapp/icons/play.png' %}" title="Avanzar 1 movimiento" onclick="chess.navigate(1, true);" />
+        <img src="{% static 'chessapp/icons/forward.png' %}" title="Avanzar 10 movimientos" onclick="chess.navigate(10, true);" />
+        <img src="{% static 'chessapp/icons/skip-forward.png' %}" title="Avanzar al final" onclick="chess.returnToEnd();" />
+        <img src="{% static 'chessapp/icons/go-previous.png' %}" title="Retroceder 1 movimiento" onclick="chess.navigate(-1);" />
+        <img src="{% static 'chessapp/icons/go-next.png' %}" title="Avanzar 1 movimiento" onclick="chess.navigate(1);" />
+        <img src="{% static 'chessapp/icons/help-hint.png' %}" title="Ayuda" onclick="chess.help();" />
+    </div>
 </form>
+
 
 <div id="chessDesk"></div>
 <script type="text/javascript">
@@ -217,28 +241,59 @@ body {
 	});
 </script>
 
-<form name="chessCtrl2" onsubmit="return(false);">
-<p style="text-align:center;">[&nbsp;Ver lado: <select onchange="chess.setSide(this.selectedIndex);" name="selSide"><option>Blanco</option><option>Negro</option><option selected>Lado humano</option></select> | <input id="useKeybAsk" name="KeybCtrl" type="checkbox" onclick="chess.useKeyboard(this.checked);" checked /> <label for="useKeybAsk">Habilitar teclado</label> | Tasa de fotogramas en movimiento: <input type="text" name="frameRateCtrl" value="1000" size="5" onchange="var nMs=new Number(this.value);if(!isNaN(nMs)&&nMs>0){chess.setFrameRate(nMs);}" /> ms&nbsp;]</p>
+<form name="chessCtrl2" onsubmit="return(false);" class="chess-form_1">
+    <div>
+        <span>Ver lado:</span>
+        <select onchange="chess.setSide(this.selectedIndex);" name="selSide">
+            <option>Blanco</option>
+            <option>Negro</option>
+            <option selected>Lado humano</option>
+        </select>
+    </div>
+    <div>
+        <label for="useKeybAsk">Habilitar teclado</label>
+		<input id="useKeybAsk" name="KeybCtrl" type="checkbox" onclick="chess.useKeyboard(this.checked);" checked />
+    </div>
+    <div>
+        <span>Tasa de fotogramas en movimiento:</span>
+        <input type="text" name="frameRateCtrl" value="1000" size="5" onchange="var nMs=new Number(this.value);if(!isNaN(nMs)&&nMs>0){chess.setFrameRate(nMs);}" /> ms
+    </div>
 </form>
+
+
 <hr />
-<h3 style="text-align:center;">Lector de notación de juego portátil</h3>
-<form name="chessCtrl3" onsubmit="return(false);">
-<table id="pgnTable">
-<tbody>
-<tr><td colspan="2" style="text-align:center;">Humano juega en lado: <input type="radio" name="plyerClr2" id="white2" checked /> <label for="white2">Blanco</label> <input type="radio" name="plyerClr2" id="black2" /> <label for="black2">Negro</label></td>
-<tr>
-<td>Selecciona un archivo PGN (solo Firefox):</td>
-<td><input type="file" id="PGNFileData" /> <a href="#" onclick="loadPGNFile(); return(false);">Cargar</a></td>
-</tr>
-<tr>
-<td>o pega el contenido de tu archivo PGN aquí:</td>
-<td><textarea rows="10" cols="50" id="PGNBodyArea"></textarea> <a href="#" onclick="chess.readPGN(document.getElementById('PGNBodyArea').value,document.chessCtrl3.plyerClr2[1].checked);return(false);">Cargar</a><br />
-(puedes intentar con <a href="sample.pgn">este</a> archivo PGN de ejemplo)</td>
-</tr>
-</tbody>
-</table>
+
+
+<form name="chessCtrl3" onsubmit="return(false);" class="chess-form_1">
+    <table id="pgnTable">
+        <tbody>
+            <h3 style="text-align:center;">Lector de notación de juego portátil</h3>
+            <tr>
+                <td colspan="2" style="text-align:center;">Humano juega en lado: 
+                    <input type="radio" name="plyerClr2" id="white2" checked /> 
+                    <label for="white2">Blanco</label> 
+                    <input type="radio" name="plyerClr2" id="black2" /> 
+                    <label for="black2">Negro</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Selecciona un archivo PGN (solo Firefox):</td>
+                <td>
+                    <input type="file" id="PGNFileData" /> 
+                    <a href="#" onclick="loadPGNFile(); return(false);" class="btn-toolbar">Cargar</a>
+                </td>
+            </tr>
+            <tr>
+                <td>o pega el contenido de tu archivo PGN aquí:</td>
+                <td>
+                    <textarea rows="10" cols="50" id="PGNBodyArea"></textarea> 
+                    <a href="#" onclick="chess.readPGN(document.getElementById('PGNBodyArea').value,document.chessCtrl3.plyerClr2[1].checked);return(false);" class="btn-toolbar">Cargar</a><br />
+                    (puedes intentar con <a href="sample.pgn">este</a> archivo PGN de ejemplo)
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
-<hr />
 
 <!--
 <hr />

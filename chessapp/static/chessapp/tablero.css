@@ -1,0 +1,230 @@
+
+
+/*visual de panel de accesibilidad*/
+
+.accesibilidad {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white; 
+    padding: 10px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1000; 
+    visibility: visible; 
+}
+
+.accesibilidad h3 {
+    margin: 0 20px; 
+}
+
+.accesibilidad button,
+.accesibilidad a {
+    margin: 0 5px; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+.accesibilidad button:hover,
+.accesibilidad a:hover {
+    background-color: #0056b3; 
+}
+
+
+
+#toggleAccesibilidadBtn {
+    position: fixed; 
+    bottom: 20px; 
+    left: 20px; 
+    z-index: 1000; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+#toggleAccesibilidadBtn:hover {
+    background-color: #0056b3; 
+}
+
+
+/*Visual de menu de juego*/
+.chess-form {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: white; 
+}
+
+
+.form-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.separator {
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-new-game {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-new-game:hover {
+    background-color: #218838;
+}
+
+.view-buttons {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-toolbar {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-toolbar:hover {
+    background-color: #0056b3;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.toolbar-icons img {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s;
+}
+
+.toolbar-icons img:hover {
+    transform: scale(1.2);
+}
+
+
+/*tablero    */
+
+.page-title {
+    text-align: center;
+    font-size: 2.5em; 
+    color:white; 
+    margin: 20px 0; 
+    font-family: 'Arial', sans-serif; 
+}
+
+.page-subtitle {
+    text-align: center;
+    font-size: 1.2em; 
+    color:white; 
+    margin-bottom: 40px; 
+    font-family: 'Arial', sans-serif; 
+}
+
+/*parte de de carga de archivos*/
+.chess-form_1 {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+.chess-form_1 div {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chess-form_1 span {
+    flex: 1;
+    text-align: left;
+}
+
+.chess-form_1 input[type="text"],
+.chess-form_1 select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 30%; 
+}
+
+.chess-form_1 input[type="checkbox"],
+.chess-form_1 input[type="radio"] {
+    margin-right: 10px;
+}
+
+.btn-toolbar {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.btn-toolbar:hover {
+    background-color: #0056b3;
+}
+
+h3 {
+    color: white;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#pgnTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#pgnTable td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: white; 
+    background-color: rgba(82, 77, 77, 0.8); 
+}
