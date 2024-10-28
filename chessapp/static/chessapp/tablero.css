@@ -3,7 +3,8 @@
 /*visual de panel de accesibilidad*/
 
 .accesibilidad {
-    display: flex; 
+    display: flex;
+    
     justify-content: center; 
     align-items: center; 
     background-color: rgba(0, 0, 0, 0.7); 
