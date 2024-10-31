@@ -134,6 +134,26 @@ body {
 	
 
 }
+.btn-conf {
+    display: flex; /* Para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 20px; /* Margen superior */
+    margin-bottom: 20px;
+}
+
+/* Estilo para el botón de mostrar/ocultar configuraciones */
+.btn {
+    background-color: #27833d; /* Verde */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    font-size: 16px; /* Tamaño de texto */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -153,6 +173,50 @@ body {
     #setViewBtns { }
     #setViewBtns span { }
     #setViewBtns span.pressedBtn { }
+/* Estilos para la barra de accesibilidad */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid #dddddd;
+    padding: 10px;
+}
+.accessibility-menu {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    display: none;
+    z-index: 10;
+}
+.accessibility-menu h5 {
+    margin-bottom: 10px;
+}
+
+/* Estilo de alto contraste */
+.alto-contraste {
+    background-color: black;
+    color: white;
+}
+    /* Estilo de escala de grises */
+    .modo-gris {
+        filter: grayscale(100%);
+    }
+
+	/* Estilos generales para la navbar */
+.navbar-accesibilidad {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333; /* Color oscuro inspirado en piezas de ajedrez */
+    padding: 10px;
+    border-radius: 0 0 0 10px;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 5px;
+}
+
 </style>
 </head>
 
@@ -171,14 +235,29 @@ body {
     <h3>Opciones de Accesibilidad</h3>
     <button class="btn" onclick="cambiarTamanoZoom('aumentar')">Aumentar Zoom</button>
     <button class="btn" onclick="cambiarTamanoZoom('disminuir')">Disminuir Zoom</button>
-	<button class="btn" onclick="toggleAccesibilidad()">Ocultar Opciones de Accesibilidad</button></div>
+    <button class="btn-accesibilidad" onclick="toggleAltoContraste()">♞ Alto Contraste</button>
+	<button class="btn" onclick="toggleAccesibilidad()">Ocultar Opciones de Accesibilidad</button>   
+</div>
 
-
-<form name="chessCtrl1" class="chess-form" onsubmit="return(false);">
+<script type="text/javascript">
+	function initChess() {
+		chess.useAI(document.chessCtrl1.useAI.checked);
+		chess.setPromotion(document.chessCtrl1.selPromo.selectedIndex);
+		chess.setFrameRate(Math.abs(Number(document.chessCtrl2.frameRateCtrl.value)) || 1000);
+		chess.setSide(document.chessCtrl2.selSide.selectedIndex);
+		chess.useKeyboard(document.chessCtrl2.KeybCtrl.checked);
+		chess.placeById("chessDesk");
+		chess.setView(1); // Establece vista 2D
+	}
+	</script>
+    <div class="btn-conf" id="btn-conf">
+    <button onclick="toggleFormulario()" class="btn" id="btn">Mostrar/Ocultar Configuraciones</button>
+    </div>
+<form name="chessCtrl1" class="chess-form" onsubmit="return(false);" id="chessConfigForm" style="display: none;">
 	<p>Configuraciones de partida</p>
     <div class="form-group">
-        <input id="useAIAsk" name="useAI" type="checkbox" onclick="chess.useAI(this.checked);" checked />
-        <label for="useAIAsk">Jugar contra la máquina</label>
+    <input id="useAIAsk" name="useAI" type="checkbox" onclick="chess.useAI(this.checked);" checked />
+       <label for="useAIAsk">Jugar contra la máquina</label>
     </div>
 
     <div class="form-group">
@@ -193,7 +272,7 @@ body {
 
     <div class="form-group">
         <input type="button" name="strtBtn" class="btn-new-game" value="Nueva Partida" onclick="chess.organize(this.form.plyerClr1[1].checked);" />
-		<a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
+		<a class="btn btn-secondary mx-2" href="{% url 'menu' %}">☰ Menú</a>
     </div>
 
     <div class="form-group">
@@ -209,26 +288,28 @@ body {
         <input type="text" name="plyDepthCtrl" id="plyDepthCtrl" value="0" size="2" onkeypress="if(event.keyCode===13&&chess.setPlyDepth(this.value)){alert('Ply depth setted.' + (Number(this.value) > 2 ? '\nAttention! The game could be very slow.' : ' Good game :)'));}" />
     </div>
 
-    <div class="view-buttons">
+    <!--<div class="view-buttons">
         <span class="btn-toolbar" onclick="chess.setView(2);pressVwBtn(2);">3D view</span>
         <span class="btn-toolbar" onclick="chess.setView(1);pressVwBtn(1);">2D view</span>
         <span class="btn-toolbar" onclick="chess.setView(3);pressVwBtn(3);">Both</span>
-    </div>
-
-    <div class="toolbar toolbar-icons">
-        <img src="{% static 'chessapp/icons/skip-backward.png' %}" title="Retroceder al inicio" onclick="chess.backToStart();" />
-        <img src="{% static 'chessapp/icons/backward.png' %}" title="Retroceder 10 movimientos" onclick="chess.navigate(-10, true);" />
-        <img src="{% static 'chessapp/icons/reverse-play.png' %}" title="Retroceder 1 movimiento" onclick="chess.navigate(-1, true);" />
-        <img src="{% static 'chessapp/icons/stop.png' %}" title="Detener movimiento" onclick="chess.stopMotion();" />
-        <img src="{% static 'chessapp/icons/play.png' %}" title="Avanzar 1 movimiento" onclick="chess.navigate(1, true);" />
-        <img src="{% static 'chessapp/icons/forward.png' %}" title="Avanzar 10 movimientos" onclick="chess.navigate(10, true);" />
-        <img src="{% static 'chessapp/icons/skip-forward.png' %}" title="Avanzar al final" onclick="chess.returnToEnd();" />
-        <img src="{% static 'chessapp/icons/go-previous.png' %}" title="Retroceder 1 movimiento" onclick="chess.navigate(-1);" />
-        <img src="{% static 'chessapp/icons/go-next.png' %}" title="Avanzar 1 movimiento" onclick="chess.navigate(1);" />
-        <img src="{% static 'chessapp/icons/help-hint.png' %}" title="Ayuda" onclick="chess.help();" />
-    </div>
+    </div>-->
+    <form name="chessCtrl1" class="chess-form" onsubmit="return(false);" id="chessConfigForm" style="display: none;">
+    
 </form>
-
+<form>
+<div class="toolbar toolbar-icons">
+    <img src="{% static 'chessapp/icons/skip-backward.png' %}" title="Retroceder al inicio" onclick="chess.backToStart();" />
+    <img src="{% static 'chessapp/icons/backward.png' %}" title="Retroceder 10 movimientos" onclick="chess.navigate(-10, true);" />
+    <img src="{% static 'chessapp/icons/reverse-play.png' %}" title="Retroceder 1 movimiento" onclick="chess.navigate(-1, true);" />
+    <img src="{% static 'chessapp/icons/stop.png' %}" title="Detener movimiento" onclick="chess.stopMotion();" />
+    <img src="{% static 'chessapp/icons/play.png' %}" title="Avanzar 1 movimiento" onclick="chess.navigate(1, true);" />
+    <img src="{% static 'chessapp/icons/forward.png' %}" title="Avanzar 10 movimientos" onclick="chess.navigate(10, true);" />
+    <img src="{% static 'chessapp/icons/skip-forward.png' %}" title="Avanzar al final" onclick="chess.returnToEnd();" />
+    <img src="{% static 'chessapp/icons/go-previous.png' %}" title="Retroceder 1 movimiento" onclick="chess.navigate(-1);" />
+    <img src="{% static 'chessapp/icons/go-next.png' %}" title="Avanzar 1 movimiento" onclick="chess.navigate(1);" />
+    <img src="{% static 'chessapp/icons/help-hint.png' %}" title="Ayuda" onclick="chess.help();" />
+</div>
+</form>
 
 <div id="chessDesk"></div>
 <script type="text/javascript">

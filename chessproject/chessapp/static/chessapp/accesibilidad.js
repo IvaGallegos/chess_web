@@ -23,4 +23,13 @@ function toggleAccesibilidad() {
     }
 }
 
-    
+function toggleAltoContraste() {
+    const html = document.documentElement; // Selecciona el elemento <html>
+    html.classList.toggle("modo-gris"); // Activa o desactiva la clase de escala de grises
+}
+
+function toggleFormulario() {
+    const form = document.getElementById("chessConfigForm");
+    // Cambia entre mostrar y ocultar
+    form.style.display = form.style.display === "none" ? "block" : "none";
+    }

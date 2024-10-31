@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from .models import Partida
 
 # Create your views here.
 
@@ -15,8 +16,7 @@ def login_view(request):
         email = request.POST['email']
         password = request.POST['password']
         
-        # Aquí puedes implementar tu lógica para autenticar con Firebase
-        # Si la autenticación es exitosa
+        
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)  # Inicia sesión en Django
@@ -57,9 +57,25 @@ def contacto(request):
 def configuracion(request):
     return render(request, 'chessapp/configuracion.html')
 
+#parte que iso cristobal
+def finalizar_partida(request):
+    if request.method == 'POST':
+        resultado = request.POST.get('resultado')  # Obtener el resultado de la partida
+        movimientos = request.POST.get('movimientos')  # Obtener los movimientos
+        partida = Partida(jugador=request.user, resultado=resultado, movimientos=movimientos)
+        partida.save()  # Guardar la partida en la base de datos
+        return redirect('perfil')  # Redirigir al perfil del usuario  
 
 
+@login_required  # Este decorador asegura que solo usuarios autenticados puedan acceder a esta vista
+def perfil(request):
+    partidas = Partida.objects.filter(jugador=request.user)  # Obtener partidas del usuario
 
-
+    context = {
+        'partidas': partidas,
+        'usuario': request.user,  # Pasamos el usuario actual al contexto
+    }
+    return render(request, 'perfil.html', context)
+ 
 
 

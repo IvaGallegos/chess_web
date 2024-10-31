@@ -97,10 +97,12 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    
 }
 
 .btn-new-game:hover {
     background-color: #218838;
+    
 }
 
 .view-buttons {
@@ -228,4 +230,7 @@ h3 {
     border: 1px solid #ccc;
     color: white; 
     background-color: rgba(82, 77, 77, 0.8); 
+    
 }
+
+
