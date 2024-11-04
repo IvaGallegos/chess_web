@@ -3,9 +3,11 @@
 <head>
 {% load static %}
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-	<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
 
-    <!--<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>-->
+    <script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
 	<script type="text/javascript" src="{% static 'chessapp/xhr.js' %}"></script>
     <script type="text/javascript" src="{% static 'chessapp/chess.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'chessapp/chess.css' %}" />
@@ -219,6 +221,10 @@ body {
 
 </style>
 </head>
+
+   
+        
+
 
 <body onload="initChess();">
 	<header>

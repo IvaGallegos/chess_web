@@ -1,50 +1,45 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js";
-import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js';
-
-
 //Configuración de firebase
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyB2_bx_Cik5pDrL5GhS5mSUMve13BLtqV0",
-    authDomain: "chess-8911b.firebaseapp.com",
-    projectId: "chess-8911b",
-    storageBucket: "chess-8911b.appspot.com",
-    messagingSenderId: "928989868620",
-    appId: "1:928989868620:web:07ff1cc1c2ff08e382fae9",
-    measurementId: "G-3LHBN4WTVE"});
+    apiKey: "AIzaSyBdoDmZkjJewp_AtKv7m_ccJZQhoVrQBmA",
+    authDomain: "chess-test-674f3.firebaseapp.com",
+    projectId: "chess-test-674f3",
+    storageBucket: "chess-test-674f3.firebasestorage.app",
+    messagingSenderId: "1017550167101",
+    appId: "1:1017550167101:web:046446663b4f0af591de54",
+    measurementId: "G-981GEB574V"});
 
 const db = firebaseApp.firestore();
 const auth = firebaseApp.auth();
 
 
-//Funcion para cerrar funcion en firebase
-function logout() {
-    // Cerrar sesión en Firebase
-    firebase.auth().signOut().then(() => {
-        alert("Sesión cerrada con éxito.");
-        window.location.href = "/"; // Redirige a la página de inicio
-    }).catch((error) => {
-        alert("Error al cerrar sesión: " + error.message);
-    });
-}
+    //Funcion para ingreso de usuario registrado
+    function login() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+    
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            alert("Bienvenido: " + email);
+            window.location.href = "/menu/"; // Redirige al menú
+        })
+        .catch((error) => {
+            var errorMessage = error.message;
+            alert("Error: " + errorMessage);
+        });
+    }
 
-//Funcion para ingreso de usuario registrado
-function login() {
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        alert("Bienvenido: " + email);
-        window.location.href = "/menu/"; // Redirige al menú
-    })
-    .catch((error) => {
-        var errorMessage = error.message;
-        alert("Error: " + errorMessage);
-    });
-}
-//Funcion para registro en firebase
-function register() {
+    //Funcion para cerrar sesión en firebase
+    function logout() {
+        // Cerrar sesión en Firebase
+        firebase.auth().signOut().then(() => {
+            alert("Sesión cerrada con éxito.");
+            window.location.href = "/"; // Redirige a la página de inicio
+        }).catch((error) => {
+            alert("Error al cerrar sesión: " + error.message);
+        });
+    }
+ //Funcion para registro en firebase
+ function register() {
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;

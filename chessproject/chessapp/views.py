@@ -10,19 +10,7 @@ from .models import Partida
 def home(request):
     return render(request, 'chessapp/home.html')
 
-def login_view(request):
-
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        
-        
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)  # Inicia sesión en Django
-            return redirect('menu')  # Redirige al menú después de iniciar sesión
-        else:
-            return render(request, 'chessapp/login.html', {'error': 'Credenciales incorrectas'})
+def login(request): 
     return render(request, 'chessapp/login.html')
 
 def logout_view(request):

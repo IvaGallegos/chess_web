@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="{% static 'chessapp/funciones.js' %}"></script>
+    
 
     <title>Registro</title>
     <style>
@@ -47,55 +47,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-<script>
-    const firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyB2_bx_Cik5pDrL5GhS5mSUMve13BLtqV0",
-        authDomain: "chess-8911b.firebaseapp.com",
-        projectId: "chess-8911b",
-        storageBucket: "chess-8911b.appspot.com",
-        messagingSenderId: "928989868620",
-        appId: "1:928989868620:web:07ff1cc1c2ff08e382fae9",
-        measurementId: "G-3LHBN4WTVE"});
-    const db = firebaseApp.firestore();
-    const auth = firebaseApp.auth();
+<script type="text/javascript" src="{% static 'chessapp/funciones.js' %}"></script>
 
-
-    //Funcion para registro en firebase
-function register() {
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-
-    if (name === "") {
-        alert("Por favor, ingrese su nombre");
-        return;
-    }
-
-    var emailPattern = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,3}$/;
-    if (!emailPattern.test(email)) {
-        alert("Por favor, ingrese un correo electrónico válido");
-        return;
-    }
-
-    var passwordPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/;
-    if (!passwordPattern.test(password)) {
-        alert("La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número");
-        return;
-    }
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        var user = userCredential.user;
-        alert("Usuario registrado con éxito: " + user.email);
-        window.location.href = "/menu/";
-    })
-    .catch((error) => {
-        var errorMessage = error.message;
-        alert("Error: " + errorMessage);
-    });
-}
-
-</script>
 
 <header>
     <h1>Registro</h1>
