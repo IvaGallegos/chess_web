@@ -6,8 +6,13 @@
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+
 
     <script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'chessapp/partidas.js' %}"></script>
+
 	<script type="text/javascript" src="{% static 'chessapp/xhr.js' %}"></script>
     <script type="text/javascript" src="{% static 'chessapp/chess.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'chessapp/chess.css' %}" />
@@ -220,6 +225,15 @@ body {
 }
 
 </style>
+
+
+
+
+
+
+
+
+
 </head>
 
    
@@ -376,6 +390,11 @@ body {
                     <textarea rows="10" cols="50" id="PGNBodyArea"></textarea> 
                     <a href="#" onclick="chess.readPGN(document.getElementById('PGNBodyArea').value,document.chessCtrl3.plyerClr2[1].checked);return(false);" class="btn-toolbar">Cargar</a><br />
                     (puedes intentar con <a href="sample.pgn">este</a> archivo PGN de ejemplo)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">Guardar partida en firestore: 
+                    <input type="file" id="pgnFileInput" accept=".pgn">
                 </td>
             </tr>
         </tbody>
