@@ -14,5 +14,7 @@ urlpatterns = [
     path('contacto/', views.contacto, name='contacto'),
     path('configuracion/', views.configuracion, name='configuracion'),
     path('perfil/', views.perfil, name='perfil'),
+
+    path('partidas-guardadas', views.partidas_guardadas, name='partidas-guardadas')
 ]
 # 

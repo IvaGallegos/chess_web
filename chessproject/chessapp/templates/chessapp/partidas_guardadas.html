@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Archivos Subidos</title>
+    <!-- Incluye Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+    
+    
+    
+</head>
+
+<body>
+    <h1>Mis Archivos PGN</h1>
+    <div id="archivosContainer">
+        <!-- Aquí se cargará la lista de archivos -->
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBdoDmZkjJewp_AtKv7m_ccJZQhoVrQBmA",
+            authDomain: "chess-test-674f3.firebaseapp.com",
+            projectId: "chess-test-674f3",
+            storageBucket: "chess-test-674f3.firebasestorage.app",
+            messagingSenderId: "1017550167101",
+            appId: "1:1017550167101:web:046446663b4f0af591de54",
+            measurementId: "G-981GEB574V"
+          };
+        // Configuración de Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Función para cargar los archivos del usuario
+        document.addEventListener('DOMContentLoaded', function() {
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    console.log("Cargando archivos para el usuario:", user.uid);
+
+                    // Referencia a la colección de archivos del usuario
+                    db.collection('usuarios').doc(user.uid).collection('archivosPGN').get()
+                        .then(function(querySnapshot) {
+                            const container = document.getElementById('archivosContainer');
+                            if (querySnapshot.empty) {
+                                container.innerHTML = '<p>No se encontraron archivos.</p>';
+                            } else {
+                                querySnapshot.forEach(function(doc) {
+                                    const data = doc.data();
+                                    const fileName = data.nombreArchivo;
+                                    const fileURL = data.urlArchivo;
+
+                                    // Crear un elemento de enlace para descargar el archivo
+                                    const link = document.createElement('a');
+                                    link.href = fileURL;
+                                    link.textContent = fileName;
+                                    link.setAttribute('download', fileName);
+                                    link.style.display = 'block';
+
+                                    // Añadir el enlace al contenedor
+                                    container.appendChild(link);
+                                });
+                            }
+                        })
+                        .catch(function(error) {
+                            console.error("Error al cargar los archivos:", error);
+                        });
+                } else {
+                    console.warn("Usuario no autenticado. Inicia sesión para ver tus archivos.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

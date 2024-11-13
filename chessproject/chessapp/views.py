@@ -67,3 +67,10 @@ def perfil(request):
  
 
 
+
+
+
+
+## probando listado de partidas guardadas
+def partidas_guardadas(request):
+    return render(request, 'chessapp/partidas_guardadas.html')
