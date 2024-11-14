@@ -1,5 +1,3 @@
-// Tu configuración de Firebase
-// Asegúrate de que también esté inicializado Firestore
 //const app = firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 //const db = firebase.firestore();

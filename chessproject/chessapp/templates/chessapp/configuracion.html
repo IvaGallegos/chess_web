@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú - ChessApp</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
     <style>
         body {
             background-image: url("{% static 'chessapp/images/ajedrez_fondo.jpg' %}");
@@ -23,8 +24,8 @@
             margin-top: 20px;
         }
         .menu-button {
-            width: 80%;
-            margin: 10px 0;
+            width: auto;
+            margin: 10px 10px;
             padding: 15px;
             font-size: 1.2rem;
             text-align: center;
@@ -33,6 +34,7 @@
             border-radius: 5px;
             color: white;
             transition: background-color 0.3s;
+            text-decoration: none;
         }
         .menu-button:hover {
             background-color: rgba(255, 255, 255, 0.2);
@@ -43,6 +45,103 @@
         .logout-button:hover {
             background-color: #c82333; /* Color de hover para el botón de cerrar sesión */
         }
+
+        /*visual de panel de accesibilidad*/
+
+        .accesibilidad {
+            display: flex;
+            flex-direction: column; /* Coloca los elementos en columna */
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            visibility: visible;
+        }
+        
+        .accesibilidad h3 {
+            margin: 0 20px;
+        }
+        
+        /* Estilos para los botones de zoom */
+        .zoom-controls {
+            display: flex;
+            flex-direction: row; /* Botones de zoom en fila */
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px; /* Espacio con respecto al botón de alto contraste */
+        }
+        
+        /* Estilos para el botón de alto contraste */
+        .contraste-control {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Espacio entre el texto y el botón */
+        }
+        
+        .accesibilidad button,
+        .accesibilidad a {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .accesibilidad button:hover,
+        .accesibilidad a:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Botón de alternar accesibilidad */
+        #toggleAccesibilidadBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        #toggleAccesibilidadBtn:hover {
+            background-color: #0056b3;
+        }
+        
+
+        /* Estilo de alto contraste */
+    .alto-contraste {
+    background-color: black;
+    color: white;
+    }
+    /* Estilo de escala de grises */
+    .modo-gris {
+        filter: grayscale(100%);
+    }
+
+	/* Estilos generales para la navbar */
+    .navbar-accesibilidad {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333; /* Color oscuro inspirado en piezas de ajedrez */
+    padding: 10px;
+    border-radius: 0 0 0 10px;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 5px;
+}
     </style>
 </head>
 <body>
@@ -51,34 +150,33 @@
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-<script>
-    const firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyB2_bx_Cik5pDrL5GhS5mSUMve13BLtqV0",
-        authDomain: "chess-8911b.firebaseapp.com",
-        projectId: "chess-8911b",
-        storageBucket: "chess-8911b.appspot.com",
-        messagingSenderId: "928989868620",
-        appId: "1:928989868620:web:07ff1cc1c2ff08e382fae9",
-        measurementId: "G-3LHBN4WTVE"});
-    const db = firebaseApp.firestore();
-    const auth = firebaseApp.auth();
+<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
 
-    
-</script>
 
 <header class="menu-header">
-    <h1>configuración</h1>
+    <h1>Configuración</h1>
 </header>
-
-<div class="container menu-content">
-    <a  class="menu-button btn">accesibilidad</a>
-    <a  class="menu-button btn">Resaltar movimiento</a>
-    <a  class="menu-button btn">Sonido</a> 
-    <a class="menu-button btn">Idioma</a>
-    <a class="btn btn-secondary mx-2" href="{% url 'menu' %}">Menú</a>
-
+<div class="accesibilidad" id="accesibilidadOptions">
+    <h3>Opciones de Accesibilidad</h3>
     
+    <!-- Contenedor para los botones de zoom -->
+    <div class="zoom-controls">
+        <span>Cambiar Zoom</span>
+        <button class="btn" onclick="cambiarTamanoZoom('aumentar')">Aumentar Zoom</button>
+        <button class="btn" onclick="cambiarTamanoZoom('disminuir')">Disminuir Zoom</button>
+        <button class="btn" onclick="restablecerZoom()">Restablecer Zoom</button>
+    </div>
+    
+    <!-- Botón para el alto contraste en una nueva línea -->
+    <div class="contraste-control">
+        <span>Activar contraste:</span>
+        <button class="btn-accesibilidad" onclick="toggleAltoContraste()">♞ Alto Contraste</button>
+    </div>
+
+    <a class="menu-button" href="{% url 'menu' %}">Menú</a>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>

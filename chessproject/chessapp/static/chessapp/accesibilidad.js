@@ -214,3 +214,12 @@ auth.onAuthStateChanged((user) => {
         });
     }
 
+// Funcion Valor original del zoom 
+const zoomOriginal = 1;  // 1 representa el zoom original (100%)
+
+function restablecerZoom() {
+    const cuerpo = document.body;
+    cuerpo.style.zoom = zoomOriginal;  // Restablece el zoom al valor original
+    guardarZoomEnFirestore(zoomOriginal);  // Guarda el valor original en Firestore
+}
+

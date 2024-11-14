@@ -45,32 +45,9 @@ def contacto(request):
 def configuracion(request):
     return render(request, 'chessapp/configuracion.html')
 
-#parte que iso cristobal
-def finalizar_partida(request):
-    if request.method == 'POST':
-        resultado = request.POST.get('resultado')  # Obtener el resultado de la partida
-        movimientos = request.POST.get('movimientos')  # Obtener los movimientos
-        partida = Partida(jugador=request.user, resultado=resultado, movimientos=movimientos)
-        partida.save()  # Guardar la partida en la base de datos
-        return redirect('perfil')  # Redirigir al perfil del usuario  
-
-
-@login_required  # Este decorador asegura que solo usuarios autenticados puedan acceder a esta vista
 def perfil(request):
-    partidas = Partida.objects.filter(jugador=request.user)  # Obtener partidas del usuario
-
-    context = {
-        'partidas': partidas,
-        'usuario': request.user,  # Pasamos el usuario actual al contexto
-    }
-    return render(request, 'perfil.html', context)
+    return render(request, 'chessapp/perfil.html')
  
-
-
-
-
-
-
 ## probando listado de partidas guardadas
 def partidas_guardadas(request):
     return render(request, 'chessapp/partidas_guardadas.html')
