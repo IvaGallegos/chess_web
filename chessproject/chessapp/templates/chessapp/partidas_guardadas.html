@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -22,12 +23,8 @@
             background-size: cover;
             color: white;
         }
-    
-
-  
-
-   
     </style>
+    
     <div class="partida-card" id="archivosContainer">
         <h1>Mis Partidas Guardadas</h1>
         <!-- Ejemplo de una partida guardada -->
@@ -36,49 +33,10 @@
             <p><strong>Fecha:</strong> 2024-11-13</p>
             <p><strong>Resultado:</strong> Victoria</p>
         </div>
-        <
+        
     </div>
 
-    <script>
-        
-        // Función para cargar los archivos del usuario
-        document.addEventListener('DOMContentLoaded', function() {
-            auth.onAuthStateChanged(function(user) {
-                if (user) {
-                    console.log("Cargando archivos para el usuario:", user.uid);
-
-                    // Referencia a la colección de archivos del usuario
-                    db.collection('usuarios').doc(user.uid).collection('archivosPGN').get()
-                        .then(function(querySnapshot) {
-                            const container = document.getElementById('archivosContainer');
-                            if (querySnapshot.empty) {
-                                container.innerHTML = '<p>No se encontraron archivos.</p>';
-                            } else {
-                                querySnapshot.forEach(function(doc) {
-                                    const data = doc.data();
-                                    const fileName = data.nombreArchivo;
-                                    const fileURL = data.urlArchivo;
-
-                                    // Crear un elemento de enlace para descargar el archivo
-                                    const link = document.createElement('a');
-                                    link.href = fileURL;
-                                    link.textContent = fileName;
-                                    link.setAttribute('download', fileName);
-                                    link.style.display = 'block';
-
-                                    // Añadir el enlace al contenedor
-                                    container.appendChild(link);
-                                });
-                            }
-                        })
-                        .catch(function(error) {
-                            console.error("Error al cargar los archivos:", error);
-                        });
-                } else {
-                    console.warn("Usuario no autenticado. Inicia sesión para ver tus archivos.");
-                }
-            });
-        });
-    </script>
+    
 </body>
 </html>
+
