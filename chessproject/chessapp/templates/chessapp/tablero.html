@@ -26,6 +26,8 @@
 
 
 
+
+
 <script type="text/javascript">
 var nVwPressed = false;
 function pressVwBtn(nBtnId) {
@@ -34,6 +36,47 @@ function pressVwBtn(nBtnId) {
 	nVwPressed = nBtnId;
 }
 
+let selectedSquare = null;
+
+function highlightSquare(square) {
+    const squareEl = document.querySelector(`.square-${square}`);
+    if (squareEl) {
+        squareEl.classList.add('highlight');
+    }
+}
+
+function removeHighlights() {
+    const highlightedSquares = document.querySelectorAll('.highlight');
+    highlightedSquares.forEach(square => square.classList.remove('highlight'));
+}
+
+function onSquareClick(square) {
+    // Limpiar casillas resaltadas anteriores
+    removeHighlights();
+
+    // Si haces clic en una casilla vacía, deseleccionar
+    if (!chess.get(square)) {
+        selectedSquare = null;
+        return;
+    }
+
+    // Guardar la casilla seleccionada
+    selectedSquare = square;
+
+    // Obtener movimientos legales desde la casilla seleccionada
+    const moves = chess.moves({
+        square: square,
+        verbose: true
+    });
+
+    if (moves.length === 0) return;
+
+    // Resaltar la casilla seleccionada
+    highlightSquare(square);
+
+    // Resaltar las casillas a las que se puede mover
+    moves.forEach(move => highlightSquare(move.to));
+}
 
 function onPGNLoaded(frEvnt) {
 	var sFBody = frEvnt.target.result;
@@ -60,6 +103,80 @@ function initChess() {
 	document.chessCtrl1.plyDepthCtrl.value = "0";
 	chess.setView(1);
 	pressVwBtn(1);
+    document.addEventListener("DOMContentLoaded", function () {
+    chess.placeById("chessDesk");
+
+    const squares = document.querySelectorAll('.square-55d63'); // Selector por defecto de Chess.js
+    squares.forEach(square => {
+        square.addEventListener('mouseover', (e) => {
+            const squareId = e.target.getAttribute('data-square');
+            onMouseoverSquare(squareId);
+        });
+        square.addEventListener('mouseout', () => {
+            onMouseoutSquare();
+        });
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    chess.placeById("chessDesk");
+
+    const squares = document.querySelectorAll('.square-55d63'); // Selector por defecto de Chess.js
+    squares.forEach(square => {
+        square.addEventListener('click', (e) => {
+            const squareId = e.target.getAttribute('data-square');
+            onSquareClick(squareId);
+        });
+    });
+});
+
+// Resalta una casilla específica
+function highlightSquare(square) {
+    const squareEl = document.querySelector(`.square-${square}`);
+    if (squareEl) {
+        squareEl.classList.add('highlight');
+    }
+}
+
+// Remueve todos los resaltados
+function removeHighlights() {
+    const highlightedSquares = document.querySelectorAll('.highlight');
+    highlightedSquares.forEach(square => square.classList.remove('highlight'));
+}
+
+// Maneja clics en las casillas
+function onSquareClick(square) {
+    removeHighlights(); // Limpia resaltados anteriores
+
+    const piece = chess.get(square); // Obtén la pieza en la casilla seleccionada
+    if (!piece) return; // Si no hay pieza, no hacer nada
+
+    // Obtén los movimientos legales para la pieza seleccionada
+    const moves = chess.moves({
+        square: square,
+        verbose: true
+    });
+
+    if (moves.length === 0) return;
+
+    highlightSquare(square); // Resalta la casilla seleccionada
+
+    // Resalta las casillas a las que puede moverse
+    moves.forEach(move => highlightSquare(move.to));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    chess.placeById("chessDesk"); // Coloca el tablero en el contenedor
+
+    const squares = document.querySelectorAll('.square-55d63'); // Selector de casillas
+    squares.forEach(square => {
+        square.addEventListener('click', (event) => {
+            const squareId = event.target.getAttribute('data-square');
+            onSquareClick(squareId); // Llama a la función de manejo de clic
+        });
+    });
+});
+
+
 }
 </script>
 <style type="text/css">
@@ -109,6 +226,7 @@ img.tbBtn {
 #setViewBtns {
 	width: auto;
 	float: left;
+    
 }
 
 #setViewBtns span {
@@ -354,6 +472,8 @@ body {
 </form>
 
 
+
+
 <hr />
 
 
@@ -392,6 +512,55 @@ body {
         </tbody>
     </table>
 </form>
+<style type="text/css">
+    .highlight {
+      background-color: yellow !important;
+      border: 2px solid red !important;
+    }
+  </style>
+<script>function highlightSquare(square) {
+    const squareEl = document.querySelector(`.square-${square}`);
+    if (squareEl) {
+        squareEl.classList.add('highlight');
+    }
+}
+
+function removeHighlights() {
+    const highlightedSquares = document.querySelectorAll('.highlight');
+    highlightedSquares.forEach(square => square.classList.remove('highlight'));
+}
+
+function onMouseoverSquare(square, piece) {
+    // Obtener movimientos legales desde la casilla seleccionada
+    const moves = chess.moves({
+        square: square,
+        verbose: true
+    });
+
+    if (moves.length === 0) return;
+
+    // Resaltar la casilla seleccionada
+    highlightSquare(square);
+
+    // Resaltar las casillas a las que se puede mover
+    moves.forEach(move => highlightSquare(move.to));
+}
+
+function onMouseoutSquare() {
+    removeHighlights();
+}
+
+
+</script>  
+
+<style>
+    /* Estilo para las casillas resaltadas */
+    .highlight {
+      background-color: rgba(255, 255, 0, 0.6) !important; /* Amarillo translúcido */
+      border: 2px solid red !important; /* Borde rojo */
+    }
+  </style>
+  
 
 <!--
 <hr />
@@ -413,5 +582,66 @@ for (nBoardX = 0; nBoardX &lt; 12; nBoardX++) {
 alert("This is the numeric rappresentation of the chessboard:\n\n" + sRappr); 
 </textarea></p>
 -->
+<!-- Estilos para resaltar las casillas -->
+<style>
+    .highlight {
+      background-color: rgba(255, 255, 0, 0.6) !important; /* Amarillo translúcido */
+      border: 2px solid red !important; /* Borde rojo */
+    }
+  </style>
+  
+  <!-- Scripts para manejar los clics y resaltados -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Detectar clics en las casillas del tablero
+      const squares = document.querySelectorAll('.square-55d63');
+      squares.forEach(square => {
+        square.addEventListener('click', function () {
+          const squareId = this.getAttribute('data-square');
+          handleSquareClick(squareId);
+        });
+      });
+    });
+  
+    function handleSquareClick(square) {
+      // Limpiar resaltados anteriores
+      removeHighlights();
+  
+      // Verificar si hay una pieza en la casilla seleccionada
+      const piece = chess.get(square);
+      if (!piece) return;
+  
+      // Obtener movimientos legales de la pieza
+      const moves = chess.moves({ square: square, verbose: true });
+  
+      // Resaltar casilla seleccionada
+      highlightSquare(square);
+  
+      // Resaltar las casillas legales
+      moves.forEach(move => highlightSquare(move.to));
+    }
+  
+    // Función para resaltar una casilla
+    function highlightSquare(square) {
+      const squareEl = document.querySelector(`.square-${square}`);
+      if (squareEl) {
+        squareEl.classList.add('highlight');
+      }
+    }
+  
+    // Función para eliminar todos los resaltados
+    function removeHighlights() {
+      const highlightedSquares = document.querySelectorAll('.highlight');
+      highlightedSquares.forEach(square => square.classList.remove('highlight'));
+    }
+  </script>
+  <style>
+    /* Estilo para resaltar las casillas legales */
+    .highlight {
+        background-color: rgba(0, 255, 0, 0.5); /* Verde translúcido */
+        border: 2px solid #00ff00; /* Borde verde */
+    }
+    </style>
+    
 </body>
 </html>
