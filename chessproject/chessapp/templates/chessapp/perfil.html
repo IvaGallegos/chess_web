@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 
-    <!-- Incluir los scripts de Firebase -->
+    <!-- Scripts de Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
@@ -47,12 +47,13 @@
         }
 
         .profile-header {
-            background: url("{% static 'chessapp/images/fondo-perfil.jpg' %}") no-repeat center center;
+            background: white;
             background-size: cover;
             color: white;
             padding: 30px;
             text-align: center;
             border-radius: 10px 10px 0 0;
+            color: black;
         }
 
         .profile-header h1 {
@@ -76,23 +77,47 @@
         .table {
             margin-top: 20px; /* Espacio superior para la tabla de partidas */
         }
+        
+        /* Estilo de alto contraste */
+.alto-contraste {
+    background-color: black;
+    color: white;
+}
+    /* Estilo de escala de grises */
+    .modo-gris {
+        filter: grayscale(100%);
+    }
+
+	/* Estilos generales para la navbar */
+.navbar-accesibilidad {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333; /* Color oscuro inspirado en piezas de ajedrez */
+    padding: 10px;
+    border-radius: 0 0 0 10px;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 5px;
+}
+.menu-button {
+    width: auto;
+    margin: 10px 10px;
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
     </style>
 
-<script>
-    function cambiarTamanoFuente(accion) {
-        const body = document.body;
-        const currentSize = window.getComputedStyle(body).fontSize;
-        const newSize = (accion === 'aumentar') 
-            ? (parseFloat(currentSize) + 2) + 'px' 
-            : (parseFloat(currentSize) - 2) + 'px';
-        body.style.fontSize = newSize;
-    }
-
-    function toggleAltoContraste() {
-        const body = document.body;
-        body.classList.toggle('alto-contraste');
-    }
-</script>
 
 <script>
     // Esperar a que el DOM esté completamente cargado antes de ejecutar el script
@@ -256,11 +281,15 @@
         });
     });
 </script>
+
 </head>
 
 <body>
-    <h1>Perfil de Usuario</h1>
-    <div class="container">
+    <link type="text/css" rel="stylesheet" href="{% static 'chessapp/tablero.css' %}" />
+
+    
+    <div class="container profile-name">
+        <h1>Perfil de Usuario</h1>
         <form id="usernameForm">
             <label for="usernameInput">Nombre de usuario:</label>
             <input type="text" id="usernameInput" placeholder="Ingresa tu nombre de usuario">
@@ -268,18 +297,25 @@
         </form>
         
     </div>
-    <div class="navbar-accesibilidad">
-        <button class="btn btn-secondary btn-accesibilidad" onclick="cambiarTamanoFuente('aumentar')">Aumentar Fuente</button>
-        <button class="btn btn-secondary btn-accesibilidad" onclick="cambiarTamanoFuente('disminuir')">Disminuir Fuente</button>
-        <button class="btn btn-secondary btn-accesibilidad" onclick="toggleAltoContraste()">♞ Alto Contraste</button>
-        <a class="btn btn-secondary btn-accesibilidad" href="{% url 'menu' %}">☰ Menú</a>
+    <div class="btn" id="toggleAccesibilidadBtn"  style="text-align: center; margin: 20px;"> 
+        <button id="toggleAccesibilidadBtn" class="btn" onclick="toggleAccesibilidad()">Opciones de Accesibilidad</button>
+    
+    </div>	
+        
+        
+    <div class="accesibilidad" id="accesibilidadOptions" style="visibility: hidden;">
+        <h3>Opciones de Accesibilidad</h3>
+        <button class="btn" onclick="cambiarTamanoZoom('aumentar')">Aumentar Zoom</button>
+        <button class="btn" onclick="cambiarTamanoZoom('disminuir')">Disminuir Zoom</button>
+        <button class="btn-accesibilidad" onclick="toggleAltoContraste()">♞ Alto Contraste</button>
+        <button class="btn" onclick="toggleAccesibilidad()">Ocultar Opciones de Accesibilidad</button>   
     </div>
 
     <div class="container profile-container">
         <div class="card">
             <div class="profile-header">
                 <p><strong> <span id="displayName"></span></strong></p> 
-                <p><strong>Ranking: 1500</strong></p> <!-- Cambiar esto según la lógica de tu aplicación -->
+                <p><strong>Ranking: n/a</strong></p> 
                 <p><strong>Cantidad de partidas jugadas:</strong> <span id="totalGames"></span></p>
             </div>
             <div class="profile-details">
@@ -287,7 +323,6 @@
                 <p><strong>Email:</strong> <span id="userEmail"></span></p>
                 <p><strong>Fecha de registro:</strong> <span id="registrationDate"></span></p>
                 <p><strong>Última partida jugada:</strong> <span id="lastGame"></span></p>
-                <p><strong>Descripción:</strong> Apasionado del ajedrez, siempre buscando mejorar mis habilidades.</p>
             </div>
 
 
@@ -306,9 +341,13 @@
                 <tr><td colspan="4">Cargando archivos...</td></tr>
             </tbody>
         </table>
-    </div>
+
+    </div><a class="menu-button" href="{% url 'menu' %}">Menú</a>
+
 </div>
+
 </div>
+
 
 </body>
 </html>

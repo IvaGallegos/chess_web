@@ -90,3 +90,63 @@
 .accesibilidad a:hover {
     background-color: #0056b3; 
 }
+
+
+ /* Contenedor principal del perfil */
+ .profile-name {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Letra negra */
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Título del perfil */
+.profile-name h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Estilos del formulario */
+.profile-name form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Etiqueta del campo de usuario */
+.profile-name label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Estilos del campo de texto */
+.profile-name input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Botón de guardar */
+.profile-name button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efecto hover en el botón */
+.profile-name button[type="submit"]:hover {
+    background-color: #0056b3;
+}

@@ -48,6 +48,3 @@ def configuracion(request):
 def perfil(request):
     return render(request, 'chessapp/perfil.html')
  
-## probando listado de partidas guardadas
-def partidas_guardadas(request):
-    return render(request, 'chessapp/partidas_guardadas.html')
