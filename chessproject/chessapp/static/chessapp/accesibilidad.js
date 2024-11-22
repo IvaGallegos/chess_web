@@ -19,6 +19,7 @@
 const USERS_COLLECTION = 'configuraciones';
 const ZOOM_FIELD = 'zoomLevel';
 const LAST_UPDATED_FIELD = 'ultimaActualizacion';
+
   
 // Función auxiliar para obtener una referencia a un documento de usuario
 function getUserDocRef(userId) {
@@ -223,3 +224,95 @@ function restablecerZoom() {
     guardarZoomEnFirestore(zoomOriginal);  // Guarda el valor original en Firestore
 }
 
+
+// Funcion perfiles de color de daltonismo 
+function cambiarColorPerfil() {
+    const colorProfile = document.getElementById('colorProfile').value;
+
+    // Limpia todas las clases daltónicas del body
+    document.body.classList.remove('daltonic-protanopia', 'daltonic-deuteranopia', 'daltonic-tritanopia');
+
+    // Si se selecciona un perfil diferente a "normal", aplica la clase correspondiente
+    if (colorProfile !== 'default') {
+        document.body.classList.add(colorProfile);
+    }
+}
+
+// Función para cargar perfil de daltonismo al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    const userId = firebase.auth().currentUser?.uid;
+
+    if (userId) {
+        const userConfigRef = firebase.firestore().collection('configuraciones').doc(userId);
+
+        userConfigRef.get()
+        .then((doc) => {
+            if (doc.exists) {
+                const config = doc.data();
+
+                if (config.colorProfile && config.colorProfile !== 'default') {
+                    document.body.classList.add(config.colorProfile);
+                }
+
+                const colorProfileElement = document.getElementById('colorProfile');
+                if (colorProfileElement) {
+                    colorProfileElement.value = config.colorProfile || 'default';
+                }
+            }
+        })
+        .catch(() => {}); 
+    }
+});
+
+
+// Función para guardar perfil de daltonismo
+function guardarColorConfig() {
+    const colorProfile = document.getElementById('colorProfile').value;
+    const userId = firebase.auth().currentUser?.uid; // Verifica si el usuario está autenticado
+
+    if (userId) {
+        const userConfigRef = firebase.firestore().collection('configuraciones').doc(userId);
+
+        userConfigRef.set({
+            colorProfile: colorProfile,
+            ultimaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true }) // Mezcla con campos existentes
+        .then(() => {
+            alert("Configuración guardada correctamente.");
+        })
+        .catch(() => {
+            alert("Error al guardar configuración. Intenta nuevamente.");
+        });
+    } else {
+        alert("Usuario no autenticado. No se puede guardar la configuración.");
+    }
+}
+
+
+
+// Escuchar el estado de autenticación del usuario
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        const userId = user.uid;
+        const userConfigRef = firebase.firestore().collection('configuraciones').doc(userId);
+
+        userConfigRef.get()
+        .then((doc) => {
+            if (doc.exists) {
+                const config = doc.data();
+
+                if (config.colorProfile && config.colorProfile !== 'default') {
+                    document.body.classList.add(config.colorProfile);
+                }
+
+                const colorProfileElement = document.getElementById('colorProfile');
+                if (colorProfileElement) {
+                    colorProfileElement.value = config.colorProfile || 'default';
+                }
+            }
+        })
+        .catch((error) => {
+            console.error("Error al cargar configuración:", error);
+        });
+    }
+});

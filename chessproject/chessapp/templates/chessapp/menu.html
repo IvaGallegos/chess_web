@@ -69,6 +69,35 @@
     display: flex;
     gap: 5px;
 }
+
+/* Estilo de perfiles de daltonismo */
+
+/*Protanopia: Ausencia de color rojo*/
+body.daltonic-protanopia, 
+body.daltonic-protanopia * {
+    background-color: #528de6; /* Fondo */
+    color: #FFD700 !important; /* Texto  */
+}
+/*Deuteranopia: Ausencia de color verde*/
+body.daltonic-deuteranopia, 
+body.daltonic-deuteranopia * {
+    background-color: #f07c7c; /* Fondo  */
+    color: #4c8dee !important; /* Texto  */
+}
+/*Tritanopia: Ausencia de color Azul*/
+body.daltonic-tritanopia, 
+body.daltonic-tritanopia * {
+    background-color: #41bbb5; /* Fondo */
+    color: #e44c10 !important; /* Texto */
+}
+
+body.default, 
+body.default * {
+    background-size: cover;
+            color: white;
+}
+
+
     </style>
 </head>
 <body>
@@ -78,7 +107,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-    <script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
 
 
 <header class="menu-header">
@@ -98,6 +126,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+
 </body>
 </html>
 

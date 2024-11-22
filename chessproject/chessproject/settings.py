@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #Nuestra app web
     'chessapp',
+    
 ]
 
 MIDDLEWARE = [
