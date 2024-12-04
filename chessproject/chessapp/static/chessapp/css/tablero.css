@@ -1,0 +1,426 @@
+hr {
+	width: 30%;
+	margin-top: 32px;
+	margin-bottom: 24px;
+}
+
+img.tbBtn {
+	cursor: pointer;
+	margin: 1px 3px 1px 3px;
+}
+
+#pgnTable {
+	width: auto;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	border: 0;
+}
+
+#pgnTable tr td { padding: 2px; }
+
+#chessDesk {
+	clear: both;
+	width: auto;
+	height: auto;
+	margin-top: 32px;
+	margin-bottom: 32px;
+}
+
+#chessToolBar {
+	width: 550px;
+	height: auto;
+	margin: 12px auto;
+	background-color: #969696;
+	-moz-box-shadow: inset 0 25px 27px -10px #BDBDBD;
+	-webkit-box-shadow: inset 0 25px 27px -10px #BDBDBD;
+	box-shadow: inset 0 25px 27px -10px #BDBDBD;
+	border-bottom: 1px solid #424242;
+	text-align:center;
+	padding: 6px 3px 2px 3px;
+}
+
+#setViewBtns {
+	width: auto;
+	float: left;
+    
+}
+
+#setViewBtns span {
+	margin: 0 3px;
+	display: inline-block;
+	font: 12px / 13px "Lucida Grande", sans-serif;
+	text-shadow: rgba(255, 255, 255, 0.4) 0 1px;
+	padding: 3px 6px;
+	border: 1px solid rgba(0, 0, 0, 0.6);
+	background-color: #969696;
+	cursor: default;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px, inset 0 20px 20px -10px white;
+	-webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px, inset 0 20px 20px -10px white;
+	box-shadow: rgba(255, 255, 255, 0.4) 0 1px, inset 0 20px 20px -10px white;
+}
+#setViewBtns span.pressedBtn {
+	background: #B5B5B5;
+	-moz-box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
+	-webkit-box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
+	box-shadow: inset rgba(0, 0, 0, 0.4) 0 -5px 12px, inset rgba(0, 0, 0, 1) 0 1px 3px, rgba(255, 255, 255, 0.4) 0 1px;
+}
+
+body {
+	background-image: url('../images/ajedrez_fondo.jpg');
+	background-size: cover;
+	text-align: center;
+	
+
+}
+.btn-conf {
+    display: flex; /* Para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 20px; /* Margen superior */
+    margin-bottom: 20px;
+}
+
+/* Estilo para el botón de mostrar/ocultar configuraciones */
+.btn {
+    background-color: #27833d; /* Verde */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a puntero */
+    font-size: 16px; /* Tamaño de texto */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+
+/* Estilos para la barra de accesibilidad */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid #dddddd;
+    padding: 10px;
+}
+.accessibility-menu {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    display: none;
+    z-index: 10;
+}
+.accessibility-menu h5 {
+    margin-bottom: 10px;
+}
+
+/* Estilo de alto contraste */
+.alto-contraste {
+    background-color: black;
+    color: white;
+}
+    /* Estilo de escala de grises */
+    .modo-gris {
+        filter: grayscale(100%);
+    }
+
+	/* Estilos generales para la navbar */
+.navbar-accesibilidad {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333; /* Color oscuro inspirado en piezas de ajedrez */
+    padding: 10px;
+    border-radius: 0 0 0 10px;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 5px;
+}
+
+ /* Estilo para las casillas resaltadas */
+ .highlight {
+    background-color: rgba(255, 255, 0, 0.6) !important; /* Amarillo translúcido */
+    border: 2px solid red !important; /* Borde rojo */
+  }
+
+  /* Estilo para resaltar las casillas legales */
+  .highlight {
+    background-color: rgba(0, 255, 0, 0.5); /* Verde translúcido */
+    border: 2px solid #00ff00; /* Borde verde */
+}
+
+.highlight {
+	background-color: yellow !important;
+	border: 2px solid red !important;
+  }
+
+/*visual de panel de accesibilidad*/
+
+.accesibilidad {
+    display: flex;
+    
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white; 
+    padding: 10px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1000; 
+    visibility: visible; 
+}
+
+.accesibilidad h3 {
+    margin: 0 20px; 
+}
+
+.accesibilidad button,
+.accesibilidad a {
+    margin: 0 5px; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+.accesibilidad button:hover,
+.accesibilidad a:hover {
+    background-color: #0056b3; 
+}
+
+
+
+#toggleAccesibilidadBtn {
+    position: fixed; 
+    bottom: 20px; 
+    left: 20px; 
+    z-index: 1000; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+#toggleAccesibilidadBtn:hover {
+    background-color: #0056b3; 
+}
+
+
+/*Visual de menu de juego*/
+.chess-form {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: white; 
+}
+
+
+.form-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.separator {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo del contenedor del botón */
+.btn-confi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    
+    
+}
+
+/* Estilo del botón */
+.btn-conf {    
+    background-color: #28a745; 
+    color: white; 
+    font-size: 16px; 
+    font-weight: bold; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 8px; 
+}
+
+
+.btn-conf :hover {
+    background-color: #45a049; 
+}
+
+
+
+
+
+
+
+.btn-new-game {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    
+}
+
+.btn-new-game:hover {
+    background-color: #218838;
+    
+}
+
+.view-buttons {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-toolbar {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-toolbar:hover {
+    background-color: #0056b3;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.toolbar-icons img {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s;
+}
+
+.toolbar-icons img:hover {
+    transform: scale(1.2);
+}
+
+
+/*tablero    */
+
+.page-title {
+    text-align: center;
+    font-size: 2.5em; 
+    color:white; 
+    margin: 20px 0; 
+    font-family: 'Arial', sans-serif; 
+}
+
+.page-subtitle {
+    text-align: center;
+    font-size: 1.2em; 
+    color:white; 
+    margin-bottom: 40px; 
+    font-family: 'Arial', sans-serif; 
+}
+
+/*parte de de carga de archivos*/
+.chess-form_1 {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+.chess-form_1 div {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chess-form_1 span {
+    flex: 1;
+    text-align: left;
+}
+
+.chess-form_1 input[type="text"],
+.chess-form_1 select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 30%; 
+}
+
+.chess-form_1 input[type="checkbox"],
+.chess-form_1 input[type="radio"] {
+    margin-right: 10px;
+}
+
+.btn-toolbar {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.btn-toolbar:hover {
+    background-color: #0056b3;
+}
+
+h3 {
+    color: white;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#pgnTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#pgnTable td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: white; 
+    background-color: rgba(82, 77, 77, 0.8); 
+    
+}
+
+

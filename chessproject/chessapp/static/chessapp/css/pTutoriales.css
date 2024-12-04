@@ -1,0 +1,36 @@
+body {
+    background-image: url('../images/ajedrez_fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    
+}
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para mejorar la legibilidad */
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+ul, ol {
+    margin-bottom: 30px;
+}
+.video-tutorial {
+    margin: 20px 0;
+}
+.video-title {
+    text-align: center;
+    margin: 10px 0;
+    color: #ffc107; /* Color dorado para los títulos de los videos */
+}
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}

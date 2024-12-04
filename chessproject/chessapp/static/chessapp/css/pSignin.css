@@ -1,0 +1,29 @@
+body {
+    background-image: url('../images/fondochess.jpg');
+    background-size: cover; /* Ajusta la imagen al tamaño de la ventana */
+    background-position: center; /* Centra la imagen */
+    color: white; /* Cambia el color del texto a blanco */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+}
+
+header {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 2.5rem; /* Tamaño de fuente del encabezado */
+}
+
+.form-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro y transparente para el formulario */
+    padding: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    max-width: 400px;
+    margin: auto; /* Centra el formulario */
+}
+
+input {
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%; /* Botones ocupan todo el ancho del contenedor */
+}

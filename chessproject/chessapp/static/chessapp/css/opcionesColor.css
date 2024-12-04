@@ -1,0 +1,49 @@
+/* Estilo de alto contraste */
+.alto-contraste {
+    background-color: black;
+    color: white;
+    }
+    /* Estilo de escala de grises */
+    .modo-gris {
+        filter: grayscale(100%);
+    }
+
+	/* Estilos generales para la navbar */
+    .navbar-accesibilidad {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #333; /* Color oscuro inspirado en piezas de ajedrez */
+    padding: 10px;
+    border-radius: 0 0 0 10px;
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 5px;
+}
+
+/* Estilo de perfiles de daltonismo */
+
+/*Protanopia: Ausencia de color rojo*/
+body.daltonic-protanopia, 
+body.daltonic-protanopia * {
+    background-color: #528de6; /* Fondo */
+    color: #FFD700 !important; /* Texto  */
+}
+/*Deuteranopia: Ausencia de color verde*/
+body.daltonic-deuteranopia, 
+body.daltonic-deuteranopia * {
+    background-color: #f07c7c; /* Fondo  */
+    color: #4c8dee !important; /* Texto  */
+}
+/*Tritanopia: Ausencia de color Azul*/
+body.daltonic-tritanopia, 
+body.daltonic-tritanopia * {
+    background-color: #41bbb5; /* Fondo */
+    color: #e44c10 !important; /* Texto */
+}
+
+body.default, 
+body.default * {
+    background-size: cover;
+            color: white;
+}

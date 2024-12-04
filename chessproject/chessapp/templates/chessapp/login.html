@@ -7,48 +7,9 @@
     <title>Inicio de Sesión - ChessApp</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'chessApp/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chessApp/css/pLogin.css' %}">
     
-    <style>
-        body {
-            background-image: url("{% static 'chessapp/images/fondochesslogin.jpg' %}");
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-        .form-container {
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro y transparente */
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 400px;
-            margin: auto;
-            margin-top: 100px;
-        }
-        h2 {
-            margin-bottom: 30px;
-        }
-        input {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .btn-primary {
-            background-color: #007bff; /* Color de botón */
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3; /* Color de botón al pasar el mouse */
-        }
-        .error-message {
-            color: red;
-            margin-top: 10px;
-        }
-    </style>
+    
 </head>
 <body>
 
@@ -56,7 +17,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-<script type="text/javascript" src="{% static 'chessapp/funciones.js' %}"></script>
+<script type="text/javascript" src="{% static 'chessapp/js/funciones.js' %}"></script>
 <div class="container">
     <div class="form-container">
         <h2 class="text-center">Iniciar Sesión</h2>

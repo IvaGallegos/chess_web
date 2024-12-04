@@ -6,99 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú - ChessApp</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="{% static 'chessapp/css/pMenu.css' %}"> 
 
-   
-    <style>
-        body {
-            background-image: url("{% static 'chessapp/images/ajedrez_fondo.jpg' %}");
-            background-size: cover;
-            color: white;
-        }
-        .menu-header {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .menu-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .menu-button {
-            width: 80%;
-            margin: 10px 0;
-            padding: 15px;
-            font-size: 1.2rem;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            border: none;
-            border-radius: 5px;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        .menu-button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .logout-button {
-            background-color: #dc3545; /* Color de Bootstrap para el botón de cerrar sesión */
-        }
-        .logout-button:hover {
-            background-color: #c82333; /* Color de hover para el botón de cerrar sesión */
-        }
-        
-        /* Estilo de alto contraste */
-    .alto-contraste {
-    background-color: black;
-    color: white;
-    }
-    /* Estilo de escala de grises */
-    .modo-gris {
-        filter: grayscale(100%);
-    }
-
-	/* Estilos generales para la navbar */
-    .navbar-accesibilidad {
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: #333; /* Color oscuro inspirado en piezas de ajedrez */
-    padding: 10px;
-    border-radius: 0 0 0 10px;
-    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    gap: 5px;
-}
-
-/* Estilo de perfiles de daltonismo */
-
-/*Protanopia: Ausencia de color rojo*/
-body.daltonic-protanopia, 
-body.daltonic-protanopia * {
-    background-color: #528de6; /* Fondo */
-    color: #FFD700 !important; /* Texto  */
-}
-/*Deuteranopia: Ausencia de color verde*/
-body.daltonic-deuteranopia, 
-body.daltonic-deuteranopia * {
-    background-color: #f07c7c; /* Fondo  */
-    color: #4c8dee !important; /* Texto  */
-}
-/*Tritanopia: Ausencia de color Azul*/
-body.daltonic-tritanopia, 
-body.daltonic-tritanopia * {
-    background-color: #41bbb5; /* Fondo */
-    color: #e44c10 !important; /* Texto */
-}
-
-body.default, 
-body.default * {
-    background-size: cover;
-            color: white;
-}
-
-
-    </style>
 </head>
 <body>
     <body>
@@ -107,6 +16,7 @@ body.default * {
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'chessapp/css/opcionesColor.css' %}" />
 
 
 <header class="menu-header">
@@ -126,7 +36,7 @@ body.default * {
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="{% static 'chessapp/accesibilidad.js' %}"></script>
+<script type="text/javascript" src="{% static 'chessapp/js/accesibilidad.js' %}"></script>
 
 </body>
 </html>
