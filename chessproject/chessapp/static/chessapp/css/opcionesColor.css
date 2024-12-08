@@ -24,26 +24,247 @@
 /* Estilo de perfiles de daltonismo */
 
 /*Protanopia: Ausencia de color rojo*/
-body.daltonic-protanopia, 
-body.daltonic-protanopia * {
-    background-color: #528de6; /* Fondo */
+body.daltonic-protanopia 
+{
+    
     color: #FFD700 !important; /* Texto  */
+    
 }
+body.daltonic-protanopia .menu-button.btn.logout-button {
+    background-color: #004080;}
+
+    body.daltonic-protanopia .btn-conf{
+        background-color: #004080;
+        color: white; 
+        font-size: 20px; 
+        font-weight: bold; 
+        padding: 15px 20px; 
+        border: none; 
+        border-radius: 8px; 
+    }
+    
+    body.daltonic-protanopia .btn-conf{
+        background-color: #4c8dee;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    body.daltonic-protanopia .btn-conf:hover {
+        background-color: #004080;
+        
+    }
+    
+    
+    
+    
+    body.daltonic-protanopia .btn-new-game{
+        background-color: #4c8dee;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    body.daltonic-protanopia .btn-new-game:hover {
+        background-color: #004080;
+        
+    }
+    
+    
+
 /*Deuteranopia: Ausencia de color verde*/
-body.daltonic-deuteranopia, 
-body.daltonic-deuteranopia * {
-    background-color: #f07c7c; /* Fondo  */
+body.daltonic-deuteranopia
+{
     color: #4c8dee !important; /* Texto  */
 }
+
+body.daltonic-deuteranopia .btn-conf{
+    background-color: #004080;
+    color: white; 
+    font-size: 20px; 
+    font-weight: bold; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 8px; 
+}
+
+body.daltonic-deuteranopia .btn-conf{
+    background-color: #4c8dee;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+body.daltonic-deuteranopia .btn-conf:hover {
+    background-color: #004080;
+    
+}
+
+
+
+
+body.daltonic-deuteranopia .btn-new-game{
+    background-color: #4c8dee;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+body.daltonic-deuteranopia .btn-new-game:hover {
+    background-color: #004080;
+    
+}
+body.daltonic-deuteranopia .menu-button.btn.logout-button {
+    background-color: #8d9612;}
+
 /*Tritanopia: Ausencia de color Azul*/
-body.daltonic-tritanopia, 
-body.daltonic-tritanopia * {
-    background-color: #41bbb5; /* Fondo */
+body.daltonic-tritanopia
+{
     color: #e44c10 !important; /* Texto */
 }
 
+
+body.daltonic-tritanopia .accesibilidad button,
+.accesibilidad a {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #e44c10;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+body.daltonic-tritanopia .accesibilidad button:hover,
+.accesibilidad a:hover {
+    background-color: #c2400c;
+}
+
+/* Botón de alternar accesibilidad */
+body.daltonic-tritanopia #toggleAccesibilidadBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #e44c10;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+body.daltonic-tritanopia #toggleAccesibilidadBtn:hover {
+    background-color: #e44c10;
+}
+
+
+body.daltonic-tritanopia .menu-button_c {
+    width: auto;
+    margin: 10px 10px;
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #e44c10;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s;
+}
+body.daltonic-tritanopia .menu-button_c:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+
+body.daltonic-tritanopia .btn-conf{
+    background-color: hsl(180, 79%, 34%);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+body.daltonic-tritanopia .btn-conf:hover {
+    background-color: #0e8992;
+    
+}
+
+
+
+
+body.daltonic-tritanopia .btn-new-game{
+    background-color: hsl(180, 79%, 34%);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+body.daltonic-tritanopia .btn-new-game:hover {
+    background-color: #0e8992;
+    
+}
+
+
+body.daltonic-tritanopia .btn-toolbar {
+    background-color: hsl(180, 79%, 34%);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+body.daltonic-tritanopia .btn-toolbar:hover {
+    background-color: #0e8992;
+}
+
+body.daltonic-tritanopia .menu-button:hover {
+    background-color: #e44c10; 
+    color: white; 
+    transform: scale(1.05); 
+    text-decoration: none;
+}
+
+body.daltonic-tritanopia #usernameForm button {
+    background-color: #e44c10; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+body.daltonic-tritanopia #usernameForm button:hover {
+    background-color: #aa3a0d; 
+    color: white; 
+    transform: scale(1.05); 
+    text-decoration: none;
+}
 body.default, 
 body.default * {
     background-size: cover;
             color: white;
 }
+

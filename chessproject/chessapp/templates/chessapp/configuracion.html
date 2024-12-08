@@ -38,7 +38,7 @@
         <span>Activar contraste:</span>
         <button class="btn-accesibilidad" onclick="toggleAltoContraste()">♞ Alto Contraste</button>
     </div>
-    <form id="colorConfigForm">
+    <form id="colorConfigForm" class="colorConfigForm">
         <label for="colorProfile">Perfil de colores:</label>
         <select id="colorProfile" name="colorProfile" onchange="cambiarColorPerfil()">
             <option value="default">Normal</option>
@@ -48,7 +48,7 @@
         </select>
         <button id="guardarPerfil" type="button" onclick="guardarColorConfig()">Guardar</button>
     </form>
-    <a class="menu-button" id="menu-button" href="{% url 'menu' %}">Menú</a>
+    <a class="menu-button_c"  href="{% url 'menu' %}">Menú</a>
 </div>
 
 

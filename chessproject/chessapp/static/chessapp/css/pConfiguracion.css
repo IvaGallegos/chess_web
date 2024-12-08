@@ -4,7 +4,7 @@ body {
     color: white;
 }
 
-.menu-button {
+.menu-button_c {
     width: auto;
     margin: 10px 10px;
     padding: 15px;
@@ -15,12 +15,16 @@ body {
     border-radius: 5px;
     color: white;
     transition: background-color 0.3s;
+}
+.menu-button_c:hover {
+    background-color: rgba(255, 255, 255, 0.2);
     text-decoration: none;
 }
-.menu-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
 
+
+.menu-header{
+    text-align: center;
+}
 
 /*visual de panel de accesibilidad*/
 
@@ -93,4 +97,65 @@ body {
 
 #toggleAccesibilidadBtn:hover {
     background-color: #0056b3;
+}
+
+.colorConfigForm {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto; 
+    padding: 20px;
+    background-color: #f5f5f5; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif;
+    color: #333; 
+}
+
+.colorConfigForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.colorConfigForm select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    transition: border-color 0.3s;
+}
+
+.colorConfigForm select:focus {
+    border-color: #2a568e; 
+    outline: none;
+}
+
+.colorConfigForm button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #007bff; /* Azul */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.colorConfigForm button:hover {
+    background-color: #0056b3; 
+    transform: translateY(-2px); 
+}
+
+.colorConfigForm button:active {
+    background-color: #2a568e; 
+    transform: translateY(0); 
 }
