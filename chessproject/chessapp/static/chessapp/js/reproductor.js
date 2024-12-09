@@ -1,13 +1,13 @@
 
         // Reproductor
-                // Crear el elemento de audio globalmente
+                // Crear el elemento de audio 
                 let music;
         
                 // Verificar si ya existe el reproductor de música
                 if (!window.localStorage.getItem('musicInitialized')) {
                     music = document.createElement('audio');
                     music.id = 'background-music';
-                    music.src = 'MusicaJugarAjedrez.mp3'; // Cambia por tu archivo de audio
+                    music.src = 'MusicaJugarAjedrez.mp3'; 
                     music.loop = true;
         
                     // Configurar volumen inicial y guardarlo
@@ -52,7 +52,7 @@
                     localStorage.setItem('musicVolume', e.target.value);
                 });
         
-                // Evitar duplicados al cambiar de página
+                // Evita duplicados al cambiar de página
                 if (!document.body.contains(music)) {
                     document.body.appendChild(music);
                 }

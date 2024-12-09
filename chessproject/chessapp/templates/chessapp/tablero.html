@@ -59,7 +59,7 @@ function onSquareClick(square) {
     // Limpiar casillas resaltadas anteriores
     removeHighlights();
 
-    // Si haces clic en una casilla vacía, deseleccionar
+    
     if (!chess.get(square)) {
         selectedSquare = null;
         return;
@@ -266,11 +266,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <input type="text" name="plyDepthCtrl" id="plyDepthCtrl" value="0" size="2" onkeypress="if(event.keyCode===13&&chess.setPlyDepth(this.value)){alert('Ply depth setted.' + (Number(this.value) > 2 ? '\nAttention! The game could be very slow.' : ' Good game :)'));}" />
     </div>
 
-    <!--<div class="view-buttons">
-        <span class="btn-toolbar" onclick="chess.setView(2);pressVwBtn(2);">3D view</span>
-        <span class="btn-toolbar" onclick="chess.setView(1);pressVwBtn(1);">2D view</span>
-        <span class="btn-toolbar" onclick="chess.setView(3);pressVwBtn(3);">Both</span>
-    </div>-->
     <form name="chessCtrl1" class="chess-form" onsubmit="return(false);" id="chessConfigForm" style="display: none;">
     
 </form>
@@ -408,32 +403,6 @@ function onMouseoutSquare() {
 
 </script>  
 
-
-  
-
-<!--
-<hr />
-<h3 style="text-align:center;">Running code within the "chess" object.</h3>
-<p style="text-align:center;">Please uncomment the function chess.runInside(<em>sCode</em>) to execute your code.<br />
-<textarea rows="10" cols="55" id="debugArea" onkeyup="if(event.ctrlKey&&event.shiftKey&&event.keyCode===32){chess.runInside(this.value);}">
-/**
-* Javascript Console.
-* Press Ctrl+Shift+Space to run code
-* within the "chess" object.
-*/
-
-var sRappr = "";
-for (nBoardX = 0; nBoardX &lt; 12; nBoardX++) {
-	var nBoardY = 0;
-	for (nBoardY = 0; nBoardY &lt; 10; nBoardY++) { sRappr += (etc.aBoard[nBoardX * 10 + nBoardY]) + ", "; }
-	sRappr = sRappr.substr(0, sRappr.length - 2) + "\n";
-}
-alert("This is the numeric rappresentation of the chessboard:\n\n" + sRappr); 
-</textarea></p>
--->
-<!-- Estilos para resaltar las casillas -->
-
-  
   <!-- Scripts para manejar los clics y resaltados -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
