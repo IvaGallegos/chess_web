@@ -10,10 +10,11 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('partidas-en-vivo/', views.partidas_en_vivo, name='partidas_en_vivo'),
     path('tutoriales/', views.tutoriales, name='tutoriales'),
-    path('estadisticas/', views.estadisticas_view, name='estadisticas'),
     path('contacto/', views.contacto, name='contacto'),
     path('configuracion/', views.configuracion, name='configuracion'),
     path('perfil/', views.perfil, name='perfil'),
+    path('ayuda/', views.ayuda, name='ayuda'),
+
 
     
 ]

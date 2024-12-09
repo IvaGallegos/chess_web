@@ -26,6 +26,8 @@ def menu(request):
 def tablero(request):
     return render(request, 'chessapp/tablero.html')
 
+def ayuda(request):
+    return render(request, 'chessapp/ayuda.html')  
 
 def home(request):
     return render(request, 'chessapp/home.html')  
@@ -36,9 +38,6 @@ def partidas_en_vivo(request):
 def tutoriales(request):
     return render(request, 'chessapp/tutoriales.html')
     
-def estadisticas_view(request):
-    return render(request, 'chessapp/estadisticas.html')
-
 def contacto(request):
     return render(request, 'chessapp/contacto.html')
 
