@@ -72,3 +72,5 @@ const auth = firebaseApp.auth();
         alert("Error: " + errorMessage);
     });
 }
+
+
